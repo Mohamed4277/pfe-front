@@ -1,38 +1,69 @@
-.App {
-  text-align: center;
+.navbar {
+  padding: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav-bar-align-end {
+  text-align: end;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.search-bar-margin {
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 100%;
+}
+
+.Auth-form-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+.Auth-form {
+  width: 420px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Auth-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+}
+
+.margin-title {
+  margin-top: 70px;
+  margin-bottom: 60px;
+}
+
+.submit-margin {
+  margin-top: 24px;
+}
+
+.form-group {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.Auth-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
 }
