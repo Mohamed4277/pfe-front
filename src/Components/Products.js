@@ -1,8 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 function Products() {
   const [products, setProducts] = useState([]);
+  const cart = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  console.log(cart);
 
   useEffect(() => {
     const url = "api/product";
@@ -50,7 +55,12 @@ function Products() {
                         <button
                           type="button"
                           class="btn btn-lg btn-primary"
-                          disabled
+                          onClick={() =>
+                            dispatch({
+                              type: "ADD_ITEM_IN_BASKET",
+                              payload: { ...product, quantity: 1 },
+                            })
+                          }
                         >
                           Aouter au panier
                         </button>
