@@ -2,7 +2,7 @@ const initState = {
   basket: [],
 };
 
-const Reducer = (cart = [], action) => {
+const cart = (cart = [], action) => {
   if (action.type === "ADD_ITEM_IN_BASKET") {
     let tempcart = cart.filter((item) => item.id === action.payload.id);
     if (tempcart < 1) {
@@ -25,4 +25,4 @@ const Reducer = (cart = [], action) => {
   return cart;
 };
 
-export default Reducer;
+export default cart;

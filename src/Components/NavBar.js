@@ -5,7 +5,14 @@ import { useSelector } from "react-redux";
 
 function NavBar() {
   const navigate = useNavigate();
-  const cart = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
+
+  const nbItem =
+    cart &&
+    cart.length > 0 &&
+    cart.reduce((acc, currentvalue) => {
+      return acc + parseInt(currentvalue.quantity, 10);
+    }, 0);
 
   return (
     <>
@@ -40,16 +47,20 @@ function NavBar() {
                   onClick={() => navigate("/cart")}
                   className="btn btn-lg  button-margin"
                 >
-                  <div className="d-inline">{cart.length}</div>
+                  <div className="d-inline ft-nb-item">{nbItem}</div>
                   <Cart2 size={20} />
                 </button>
-                <button className="btn btn-lg button-margin">
+                <button
+                  onClick={() => navigate("/my-account")}
+                  className="btn btn-lg button-margin"
+                >
                   <Person size={20} />
                 </button>
                 <button
                   onClick={() => {
                     localStorage.removeItem("access_token");
                     localStorage.removeItem("refresh_token");
+                    localStorage.removeItem("persist:root");
                     navigate("/login");
                   }}
                   className="btn btn-lg button-margin"

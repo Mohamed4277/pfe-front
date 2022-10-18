@@ -24,7 +24,7 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 40vh;
 }
 
 .Auth-form {
@@ -37,6 +37,12 @@
 
 .nav-bar-mb {
   margin-bottom: 5%;
+}
+
+.ft-nb-item {
+  color: red;
+  font-weight: bold;
+  font-size: initial;
 }
 
 .Auth-form-content {

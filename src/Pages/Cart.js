@@ -3,15 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 function Cart() {
-  const cart = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   console.log(cart);
 
-  const addition = (acc, currentvalue) => {
-    return acc + currentvalue.price * currentvalue.quantity;
-  };
-  const total = cart.reduce(addition, 0);
+  const total =
+    cart &&
+    cart.length > 0 &&
+    cart.reduce((acc, currentvalue) => {
+      return acc + currentvalue.price * currentvalue.quantity;
+    }, 0);
 
   return (
     <>

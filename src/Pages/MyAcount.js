@@ -11,56 +11,41 @@ function MyAcount() {
         </div>
         <div className="row">
           <div className="col-12 col-md-3">
-            <nav className="mb-10 mb-md-0">
-              <div className="list-group list-group-sm list-group-strong list-group-flush-x">
-                <a
-                  className="list-group-item list-group-item-action dropend-toggle active"
-                  href="account-orders.html"
-                >
-                  Orders
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  Commandes
                 </a>
-                <a
-                  className="list-group-item list-group-item-action dropend-toggle "
-                  href="account-wishlist.html"
-                >
-                  Widhlist
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Liste de souhaits
                 </a>
-                <a
-                  className="list-group-item list-group-item-action dropend-toggle "
-                  href="account-personal-info.html"
-                >
-                  Personal Info
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Information personnelle
                 </a>
-                <a
-                  className="list-group-item list-group-item-action dropend-toggle "
-                  href="account-address.html"
-                >
-                  Addresses
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Adresses
                 </a>
-                <a
-                  className="list-group-item list-group-item-action dropend-toggle "
-                  href="account-payment.html"
-                >
-                  Payment Methods
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Methodes de payements
                 </a>
-                <a
-                  className="list-group-item list-group-item-action dropend-toggle"
-                  href="#!"
-                >
-                  Logout
-                </a>
-              </div>
-            </nav>
+              </li>
+            </ul>
           </div>
           <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
-            {/* Form */}
             <form>
               <div className="row">
                 <div className="col-12 col-md-6">
-                  {/* Email */}
                   <div className="form-group">
                     <label className="form-label" for="accountFirstName">
-                      First Name */
+                      Prénom
                     </label>
                     <input
                       className="form-control form-control-sm"
@@ -73,10 +58,9 @@ function MyAcount() {
                   </div>
                 </div>
                 <div className="col-12 col-md-6">
-                  {/* Email */}
                   <div className="form-group">
                     <label className="form-label" for="accountLastName">
-                      Last Name */
+                      Nom
                     </label>
                     <input
                       className="form-control form-control-sm"
@@ -89,10 +73,9 @@ function MyAcount() {
                   </div>
                 </div>
                 <div className="col-12">
-                  {/* Email */}
                   <div className="form-group">
                     <label className="form-label" for="accountEmail">
-                      Email Address */
+                      Adresse mail
                     </label>
                     <input
                       className="form-control form-control-sm"
@@ -105,10 +88,9 @@ function MyAcount() {
                   </div>
                 </div>
                 <div className="col-12 col-md-6">
-                  {/* Password */}
                   <div className="form-group">
                     <label className="form-label" for="accountPassword">
-                      Current Password */
+                      Password actuel
                     </label>
                     <input
                       className="form-control form-control-sm"
@@ -120,10 +102,9 @@ function MyAcount() {
                   </div>
                 </div>
                 <div className="col-12 col-md-6">
-                  {/* Password */}
                   <div className="form-group">
                     <label className="form-label" for="AccountNewPassword">
-                      New Password */
+                      Nouveau password
                     </label>
                     <input
                       className="form-control form-control-sm"
@@ -135,101 +116,18 @@ function MyAcount() {
                   </div>
                 </div>
                 <div className="col-12 col-lg-6">
-                  {/* Birthday */}
                   <div className="form-group">
-                    {/* Label */}
-                    <label className="form-label">Date of Birth</label>
-
-                    {/* Inputs */}
-                    <div className="row gx-5">
-                      <div className="col-auto">
-                        {/* Date */}
-                        <label className="visually-hidden" for="accountDate">
-                          Date
-                        </label>
-                        <select
-                          className="form-select form-select-sm"
-                          id="accountDate"
-                        >
-                          <option>10</option>
-                          <option>11</option>
-                          <option selected="">12</option>
-                        </select>
-                      </div>
-                      <div className="col">
-                        {/* Date */}
-                        <label className="visually-hidden" for="accountMonth">
-                          Month
-                        </label>
-                        <select
-                          className="form-select form-select-sm"
-                          id="accountMonth"
-                        >
-                          <option>January</option>
-                          <option selected="">February</option>
-                          <option>March</option>
-                        </select>
-                      </div>
-                      <div className="col-auto">
-                        {/* Date */}
-                        <label className="visually-hidden" for="accountYear">
-                          Year
-                        </label>
-                        <select
-                          className="form-select form-select-sm"
-                          id="accountYear"
-                        >
-                          <option>1990</option>
-                          <option selected="">1991</option>
-                          <option>1992</option>
-                        </select>
-                      </div>
-                    </div>
+                    <label className="form-label">Date</label>
                   </div>
                 </div>
                 <div className="col-12 col-lg-6">
-                  {/* Gender */}
-                  <div className="form-group mb-8">
-                    {/* Label */}
-                    <label className="form-label">Gender</label>
-
-                    {/* Inputs */}
-                    <div>
-                      {/* Male */}
-                      <input
-                        className="btn-check"
-                        type="radio"
-                        name="gender"
-                        id="male"
-                        checked=""
-                      />
-                      <label
-                        className="btn btn-sm btn-outline-border"
-                        for="male"
-                      >
-                        Male
-                      </label>
-
-                      {/* Female */}
-                      <input
-                        className="btn-check"
-                        type="radio"
-                        name="gender"
-                        id="female"
-                      />
-                      <label
-                        className="btn btn-sm btn-outline-border"
-                        for="female"
-                      >
-                        Female
-                      </label>
-                    </div>
+                  <div className="form-group">
+                    <label className="form-label">Genre</label>
                   </div>
                 </div>
                 <div className="col-12">
-                  {/* Button */}
-                  <button className="btn btn-dark" type="submit">
-                    Save Changes
+                  <button type="button" class="btn btn-lg btn-primary">
+                    Sauvegarder
                   </button>
                 </div>
               </div>
