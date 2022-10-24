@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import PersonInformation from "../Components/PersonInformation";
+import Adresses from "../Components/Adresses";
+import WishList from "../Components/WishList";
+import Order from "../Components/WishList";
+import PaymentMode from "../Components/PaymentMode";
 
 function MyAcount() {
+  const [isInformationDisplay, setIsInformationDisplay] = useState(false);
+  const [isAdressDisplay, setIsAdressDisplay] = useState(false);
+  const [isWishListDisplay, setIsWishListDisplay] = useState(false);
+  const [isOrderDisplay, setIsOrderDisplay] = useState(false);
+  const [isPaymentOrderDisplay, setIsPaymentOrderDisplay] = useState(false);
+
   return (
     <section className="pt-7 pb-12">
       <div className="container">
@@ -13,126 +24,86 @@ function MyAcount() {
           <div className="col-12 col-md-3">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <a
+                  class="nav-link active"
+                  onClick={() => {
+                    setIsInformationDisplay(false);
+                    setIsAdressDisplay(false);
+                    setIsWishListDisplay(false);
+                    setIsOrderDisplay(true);
+                    setIsPaymentOrderDisplay(false);
+                  }}
+                >
                   Commandes
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  onClick={() => {
+                    setIsInformationDisplay(false);
+                    setIsAdressDisplay(false);
+                    setIsWishListDisplay(true);
+                    setIsOrderDisplay(false);
+                    setIsPaymentOrderDisplay(false);
+                  }}
+                  href="#"
+                >
                   Liste de souhaits
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  onClick={() => {
+                    setIsInformationDisplay(true);
+                    setIsAdressDisplay(false);
+                    setIsWishListDisplay(false);
+                    setIsOrderDisplay(false);
+                    setIsPaymentOrderDisplay(false);
+                  }}
+                  href="#"
+                >
                   Information personnelle
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  onClick={() => {
+                    setIsInformationDisplay(false);
+                    setIsAdressDisplay(true);
+                    setIsWishListDisplay(false);
+                    setIsOrderDisplay(false);
+                    setIsPaymentOrderDisplay(false);
+                  }}
+                  href="#"
+                >
                   Adresses
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a
+                  class="nav-link"
+                  onClick={() => {
+                    setIsInformationDisplay(false);
+                    setIsAdressDisplay(false);
+                    setIsWishListDisplay(false);
+                    setIsOrderDisplay(false);
+                    setIsPaymentOrderDisplay(true);
+                  }}
+                  href="#"
+                >
                   Methodes de payements
                 </a>
               </li>
             </ul>
           </div>
-          <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
-            <form>
-              <div className="row">
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <label className="form-label" for="accountFirstName">
-                      Prénom
-                    </label>
-                    <input
-                      className="form-control form-control-sm"
-                      id="accountFirstName"
-                      type="text"
-                      placeholder="First Name */"
-                      value="Daniel"
-                      required=""
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <label className="form-label" for="accountLastName">
-                      Nom
-                    </label>
-                    <input
-                      className="form-control form-control-sm"
-                      id="accountLastName"
-                      type="text"
-                      placeholder="Last Name */"
-                      value="Robinson"
-                      required=""
-                    />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="form-group">
-                    <label className="form-label" for="accountEmail">
-                      Adresse mail
-                    </label>
-                    <input
-                      className="form-control form-control-sm"
-                      id="accountEmail"
-                      type="email"
-                      placeholder="Email Address */"
-                      value="user@email.com"
-                      required=""
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <label className="form-label" for="accountPassword">
-                      Password actuel
-                    </label>
-                    <input
-                      className="form-control form-control-sm"
-                      id="accountPassword"
-                      type="password"
-                      placeholder="Current Password */"
-                      required=""
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-md-6">
-                  <div className="form-group">
-                    <label className="form-label" for="AccountNewPassword">
-                      Nouveau password
-                    </label>
-                    <input
-                      className="form-control form-control-sm"
-                      id="AccountNewPassword"
-                      type="password"
-                      placeholder="New Password */"
-                      required=""
-                    />
-                  </div>
-                </div>
-                <div className="col-12 col-lg-6">
-                  <div className="form-group">
-                    <label className="form-label">Date</label>
-                  </div>
-                </div>
-                <div className="col-12 col-lg-6">
-                  <div className="form-group">
-                    <label className="form-label">Genre</label>
-                  </div>
-                </div>
-                <div className="col-12">
-                  <button type="button" class="btn btn-lg btn-primary">
-                    Sauvegarder
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+          {isInformationDisplay && <PersonInformation />}
+          {isAdressDisplay && <Adresses />}
+          {isWishListDisplay && <WishList />}
+          {isOrderDisplay && <Order />}
+          {isPaymentOrderDisplay && <PaymentMode />}
         </div>
       </div>
     </section>

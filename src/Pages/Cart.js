@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Cart() {
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   console.log(cart);
 
@@ -22,6 +24,30 @@ function Cart() {
         cart.map((product) => {
           return (
             <div className="container">
+              <div className="row mb-5">
+                <div className="col align-self-center total-purchase purchase">
+                  Total des achats: {total} €
+                </div>
+                <div className="col align-self-center button-order purchase text-end">
+                  <button
+                    type="button"
+                    className="btn btn-success btn-lg button-margin"
+                    onClick={() => {
+                      navigate("/ordered");
+                      localStorage.removeItem("persist:root");
+                      dispatch({
+                        type: "UPDATE_QUANTITY_ITEM",
+                        payload: {
+                          ...product,
+                          quantity: 0,
+                        },
+                      });
+                    }}
+                  >
+                    Passer la commande
+                  </button>
+                </div>
+              </div>
               <div class="card mb-3">
                 <div class="row no-gutters">
                   <div class="col-md-4">

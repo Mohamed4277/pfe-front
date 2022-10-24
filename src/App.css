@@ -6,6 +6,18 @@
   text-align: end;
 }
 
+.ordered-text {
+  text-align: center;
+  font-size: 45px;
+  color: red;
+  font-weight: bold;
+}
+
+.ordered-button {
+  text-align: center;
+  margin-top: 10px;
+}
+
 .search-bar-margin {
   margin-top: 35px;
   margin-bottom: 35px;

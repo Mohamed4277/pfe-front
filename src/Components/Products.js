@@ -1,41 +1,15 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-function Products() {
-  const [products, setProducts] = useState([]);
-  const cart = useSelector((state) => state);
+function Products(props) {
   const dispatch = useDispatch();
 
-  console.log(cart);
-
-  useEffect(() => {
-    const url = "api/product";
-    const token = localStorage.getItem("access_token");
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "content-Type": "application/json",
-          },
-        });
-        const json = await response.json();
-        setProducts(json);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  console.log("++++++++++++++++++++: ", props.listProduct);
 
   return (
     <>
-      {products &&
-        products.length > 0 &&
-        products.map((product) => {
+      {props.listProduct &&
+        props.listProduct.length > 0 &&
+        props.listProduct.map((product) => {
           return (
             <div className="container">
               <div class="card mb-3">

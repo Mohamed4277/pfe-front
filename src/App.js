@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Cart from "./Pages/Cart";
 import NavBar from "./Components/NavBar";
+import Ordered from "./Pages/Ordered";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home" element={<Home />}></Route>
         <Route path="/my-account" element={<MyAcount />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/ordered" element={<Ordered />}></Route>
       </Routes>
     </>
   );
