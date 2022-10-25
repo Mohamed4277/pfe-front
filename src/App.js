@@ -10,9 +10,10 @@ import NavBar from "./Components/NavBar";
 import Ordered from "./Pages/Ordered";
 
 function App() {
+  const hasToken=localStorage.getItem("access_token") && localStorage.getItem("access_token").length > 0
   return (
     <>
-      <NavBar />
+    <NavBar />
       <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/login" element={<Login />}></Route>

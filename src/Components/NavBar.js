@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { Cart2, Power, Person } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function NavBar() {
   const navigate = useNavigate();
+  const [isExpand, setIsExpand]=useState(false);
   const { cart } = useSelector((state) => state);
 
   const nbItem =
@@ -18,28 +19,25 @@ function NavBar() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light nav-bar-mb">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/home" >
             MyBookStore.
           </a>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/home">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+              <li class="nav-item dropdown" onClick={()=>setIsExpand(!isExpand)}>
+                <a class={isExpand?"nav-link dropdown-toggle show":"nav-link dropdown-toggle"} 
+                   href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  aria-expanded={isExpand}>
                   Catalogue
                 </a>
-              </li>
+                <div class={isExpand?"dropdown-menu show":"dropdown-menu"} aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Mathematiques</a>
+                  <a class="dropdown-item" href="#">Informatique</a>
+                  <a class="dropdown-item" href="#">Physique</a>
+                  <a class="dropdown-item" href="#">Science de la vie et de la terre</a>
+                  <a class="dropdown-item" href="#">Géographie</a>
+                  <a class="dropdown-item" href="#">Géologie</a>
+                </div>
+             </li>
             </ul>
             <div className="container nav-bar-align-end">
               <div className="col">

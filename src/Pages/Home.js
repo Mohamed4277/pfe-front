@@ -12,6 +12,8 @@ function Home() {
         : "http://localhost:8080/api/product";
     const token = localStorage.getItem("access_token");
 
+    console.log('****** valueToSearch: ', valueToSearch)
+
     const fetchData = async () => {
       try {
         const response = await fetch(url, {

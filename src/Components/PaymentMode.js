@@ -30,7 +30,7 @@ function PaymentMode() {
     <>
       <div class="col-12 col-md-9 col-lg-8 offset-lg-1">
         <div class="row">
-          <div class="col-12 col-lg-6">
+          <div class="col-12">
             {paymentMode.map((card) => (
               <>
                 <div class="card card-lg bg-light mb-8">

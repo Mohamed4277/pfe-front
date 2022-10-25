@@ -31,7 +31,7 @@ function PersonInformation() {
       {" "}
       <form>
         <div className="row">
-          <div className="col-12 col-md-6">
+          <div className="col-12">
             <div className="form-group">
               <label className="form-label" for="accountFirstName">
                 Prénom

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PersonInformation from "../Components/PersonInformation";
 import Adresses from "../Components/Adresses";
 import WishList from "../Components/WishList";
-import Order from "../Components/WishList";
+import Order from "../Components/Order";
 import PaymentMode from "../Components/PaymentMode";
 
 function MyAcount() {
@@ -33,6 +33,7 @@ function MyAcount() {
                     setIsOrderDisplay(true);
                     setIsPaymentOrderDisplay(false);
                   }}
+                  href="#"
                 >
                   Commandes
                 </a>
@@ -99,10 +100,10 @@ function MyAcount() {
               </li>
             </ul>
           </div>
+          {isOrderDisplay && <Order />}
           {isInformationDisplay && <PersonInformation />}
           {isAdressDisplay && <Adresses />}
           {isWishListDisplay && <WishList />}
-          {isOrderDisplay && <Order />}
           {isPaymentOrderDisplay && <PaymentMode />}
         </div>
       </div>

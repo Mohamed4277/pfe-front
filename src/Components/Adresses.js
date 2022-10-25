@@ -29,11 +29,11 @@ function Adresses() {
     <>
       <div class="col-12 col-md-9 col-lg-8 offset-lg-1">
         <div class="row">
-          <div class="col-12 col-lg-6">
+          <div class="col-12">
             {adresses.map((adress) => (
               <>
-                <div class="card card-lg bg-light mb-8">
-                  <div class="card-body ">
+                <div class="card card-lg bg-light mb-8 border-0 rounded-0 mb-3">
+                  <div class="card-body">
                     <h6 class="mb-6">
                       {adress.isInvoiceAdress
                         ? "Adresse de livraison"
