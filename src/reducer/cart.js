@@ -1,6 +1,3 @@
-const initState = {
-  basket: [],
-};
 
 const cart = (cart = [], action) => {
   if (action.type === "ADD_ITEM_IN_BASKET") {
@@ -21,6 +18,9 @@ const cart = (cart = [], action) => {
         : item;
     });
     return tempcart;
+  }
+  if (action.type === "REMOVE_CART") {
+       return [];
   }
   return cart;
 };

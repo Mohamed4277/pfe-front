@@ -6,6 +6,10 @@
   text-align: end;
 }
 
+.password-incorrect{
+  color: red;
+}
+
 .ordered-text {
   text-align: center;
   font-size: 45px;

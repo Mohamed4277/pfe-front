@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
+import {  useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import LimitedAccessRoute from "../Components/LimitedAccessRoute"
 
 function Login() {
+
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [page, setPage] = useState("/");
+  const [isConnected, setIsConnected]=useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     const url = "http://localhost:8080/api/login";
 
@@ -22,19 +27,27 @@ function Login() {
           }),
         });
         const json = await response.json();
-        console.log("Login return: ", json);
         localStorage.setItem("access_token", json.access_token);
         localStorage.setItem("refresh_token", json.refresh_token);
-        setPage("home");
-        console.log("******** Page", page);
-        navigate(page);
+        const responseUserInformation = await fetch("http://localhost:8080/api/user/" + userName, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        const {username,roles} = await responseUserInformation.json();
+        dispatch({type: "IS_CONNECTED", payload:{isConnected:true, username, roles}})
+        navigate("/home");
       } catch (error) {
+        setIsConnected(true)
         console.log("error", error);
       }
     };
 
-    fetchData();
+    userName.length > 0 && password.length > 0 && fetchData();
   }, [userName, password]);
+
 
   return (
     <>
@@ -45,19 +58,21 @@ function Login() {
             event.preventDefault();
             setUserName(event.target.userName.value);
             setPassword(event.target.password.value);
-            navigate(page);
+            
           }}
         >
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">MyBookStore.</h3>
+          <LimitedAccessRoute/>
+            {/* <h3 className="Auth-form-title">MyBookStore.</h3> */}
             <div className="form-group mt-3">
-              <label>Email </label>
+              <label>Email</label>
               <input
                 type="email"
                 className="form-control mt-1"
                 placeholder="Enter email"
                 id="userName"
                 name="userName"
+                required
               />
             </div>
             <div className="form-group mt-3">
@@ -68,16 +83,25 @@ function Login() {
                 placeholder="Enter password"
                 id="password"
                 name="password"
+                required
               />
             </div>
-            <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary">
-                Submit
-              </button>
+            {isConnected && <div className="form-group mt-3 password-incorrect">"Email ou mot de passe incorrect"</div>}
+            <div className="row">            
+              <div className="d-grid gap-2 mt-3 col-md-6">
+                <button type="submit" className="btn btn-primary">
+                  Sign in
+                </button>
+              </div>
+              <div className="d-grid gap-2 mt-3 col-md-6 ">
+                <button onClick={()=>navigate("/register")} type="submit" className="btn btn-secondary">
+                  Sign up
+                </button>
+              </div>
             </div>
-            <p className="forgot-password text-center mt-2">
+            {/* <p className="forgot-password text-center mt-2">
               <a href="/register">Register</a>
-            </p>
+            </p> */}
           </div>
         </form>
       </div>

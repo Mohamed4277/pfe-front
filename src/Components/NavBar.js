@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import { Cart2, Power, Person } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 function NavBar() {
   const navigate = useNavigate();
   const [isExpand, setIsExpand]=useState(false);
-  const { cart } = useSelector((state) => state);
+  const { cart, user } = useSelector((state) => state);
+  const dispatch=useDispatch();
 
   const nbItem =
     cart &&
@@ -20,9 +21,9 @@ function NavBar() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light nav-bar-mb">
         <div className="container-fluid">
           <a className="navbar-brand" href="/home" >
-            MyBookStore.
+            <h3>MyBookStore.</h3>
           </a>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {user.isConnected && <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item dropdown" onClick={()=>setIsExpand(!isExpand)}>
                 <a class={isExpand?"nav-link dropdown-toggle show":"nav-link dropdown-toggle"} 
@@ -56,10 +57,10 @@ function NavBar() {
                 </button>
                 <button
                   onClick={() => {
-                    localStorage.removeItem("access_token");
-                    localStorage.removeItem("refresh_token");
-                    localStorage.removeItem("persist:root");
-                    navigate("/login");
+                    window.localStorage.clear();
+                    dispatch({type:"IS_CONNECTED", payload:{isConnected:false}})
+                    dispatch({type:"REMOVE_CART",payload:{}})
+                    navigate("/");
                   }}
                   className="btn btn-lg button-margin"
                 >
@@ -67,7 +68,7 @@ function NavBar() {
                 </button>
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </nav>
     </>

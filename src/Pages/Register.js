@@ -1,5 +1,8 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+
+
 
 function Register() {
   const [name, setName] = useState("");
@@ -12,7 +15,7 @@ function Register() {
   const [zip, setZip] = useState("");
   const navigate = useNavigate();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const url = "http://localhost:8080/api/register";
     const token = localStorage.getItem("access_token");
 
@@ -39,116 +42,125 @@ function Register() {
         console.log("error", error);
       }
     };
-    if (email.length > 0) {
-      fetchData();
-    }
+    
+    email.length>0 && password.length>0 && fetchData();
+    
   }, [email, password]);
 
+  const handlesubmit = (event) => {
+    event.preventDefault();
+    setEmail(event.target.email.value);
+    setPassword(event.target.password.value);
+    setAdressPartOne(event.target.adressPartOne.value);
+    setAdressPartTwo(event.target.adressPartTwo.value);
+    setCity(event.target.city.value);
+    setZip(event.target.zip.value);
+    setlastName(event.target.lastName.value);
+    setName(event.target.name.value);
+  }
   return (
     <div className="container">
-      <h3 className="Auth-form-title margin-title">MyBookStore.</h3>
+      {/* <h3 className="Auth-form-title margin-title">MyBookStore.</h3> */}
       <form
         className="container"
-        onSubmit={(event) => {
-          event.preventDefault();
-          setEmail(event.target.email.value);
-          setPassword(event.target.password.value);
-          setAdressPartOne(event.target.adressPartOne.value);
-          setAdressPartTwo(event.target.adressPartTwo.value);
-          setCity(event.target.city.value);
-          setZip(event.target.zip.value);
-          setlastName(event.target.lastName.value);
-          setName(event.target.name.value);
-        }}
+        onSubmit={handlesubmit}
       >
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>Nom</label>
+        <div className="row">
+          <div className="form-group col-md-6">
+            <label htmlFor="lastName">Nom</label>
             <input
               type="name"
-              class="form-control"
+              className="form-control"
               id="lastName"
               name="lastName"
               placeholder="Nom"
+              required
             />
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Prénom</label>
+          <div className="form-group col-md-6">
+            <label htmlFor="name">Prénom</label>
             <input
               type="name"
-              class="form-control"
+              className="form-control"
               id="name"
               name="name"
               placeholder="Prénom"
+              required
             />
           </div>
         </div>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
+        <div className="row">
+          <div className="form-group col-md-6">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="email"
               name="email"
               placeholder="Email"
+              required
             />
           </div>
-          <div class="form-group col-md-6">
-            <label for="inputPassword4">Password</label>
+          <div className="form-group col-md-6">
+            <label htmlFor="password">password</label>
             <input
               type="password"
-              class="form-control"
+              className="form-control"
               id="password"
               name="password"
               placeholder="Password"
+              required
             />
           </div>
         </div>
-        <div class="form-group">
-          <label for="inputAddress">Adresse</label>
+        <div className="form-group">
+          <label htmlFor="adressPartOne">Adresse</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="adressPartOne"
             name="adressPartOne"
             placeholder="Adresse"
+            required
           />
         </div>
-        <div class="form-group">
-          <label for="inputAddress2">Adresse 2</label>
+        <div className="form-group">
+          <label htmlFor="adressPartTwo">Partie 2</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="adressPartTwo"
             name="adressPartTwo"
             placeholder="Adresse 2"
+            required
           />
         </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Ville</label>
+        <div className="row">
+          <div className="form-group col-md-6">
+            <label htmlFor="city">Ville</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="city"
               name="city"
               placeholder="Ville"
+              required
             />
           </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Code postal</label>
+          <div className="form-group col-md-6">
+            <label htmlFor="zip">Code postal</label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="zip"
               name="zip"
               placeholder="Code postal"
+              required
             />
           </div>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-lg btn-primary submit-margin">
+        <div className="form-group">
+          <button type="submit" className="btn btn-lg btn-primary submit-margin">
             Soumettre
           </button>
         </div>

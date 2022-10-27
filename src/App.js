@@ -8,20 +8,23 @@ import Register from "./Pages/Register";
 import Cart from "./Pages/Cart";
 import NavBar from "./Components/NavBar";
 import Ordered from "./Pages/Ordered";
+import ErrorPage from "./Pages/ErrorPage"
+import LimitedAccessRoute from "./Components/LimitedAccessRoute"
 
 function App() {
-  const hasToken=localStorage.getItem("access_token") && localStorage.getItem("access_token").length > 0
   return (
     <>
     <NavBar />
       <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route path="/my-account" element={<MyAcount />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/ordered" element={<Ordered />}></Route>
+       <Route path="/" element={<Login />}></Route>
+       <Route path="/register" element={<Register />}></Route>
+        <Route element={<LimitedAccessRoute/>}>        
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/my-account" element={<MyAcount />}></Route>
+          <Route path="/ordered" element={<Ordered />}></Route>
+        </Route>
+      <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
     </>
   );
