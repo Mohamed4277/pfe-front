@@ -23,7 +23,6 @@ function Home() {
           },
         });
         const json = await response.json();
-        console.log("***************: ", json);
         setListProduct(json);
       } catch (error) {
         console.log("error", error);
@@ -33,7 +32,6 @@ function Home() {
     fetchData();
   }, [valueToSearch]);
 
-  console.log("--------------: ", listProduct);
 
   return (
     <>
@@ -48,14 +46,14 @@ function Home() {
           <div class="col-8">
             <input
               type="text"
-              className="form-control mt-1"
-              placeholder="search"
+              className="form-control mt-1 rounded-0"
+              placeholder="Rechercher"
               id="searchValue"
               name="searchValue"
             />
           </div>
           <div class="col-4">
-            <button type="submit" class="btn btn-secondary btn-lg">
+            <button type="submit" class="btn btn-primary btn-lg rounded-0">
               Rechercher
             </button>
           </div>

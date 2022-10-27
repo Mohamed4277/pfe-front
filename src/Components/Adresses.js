@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Pen, Trash } from "react-bootstrap-icons";
 import data from "../Data";
 
 function Adresses() {
@@ -40,11 +41,27 @@ function Adresses() {
               <>
                 <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
                   <div class="card-body">
-                    <h6 class="mb-6">
-                      {adress.isInvoiceAdress
-                        ? "Adresse de livraison"
-                        : "Adresse"}
-                    </h6>
+                    <div className="row">
+                      <div className="col-6">                    
+                        <h6 class="mb-6">
+                        {adress.isInvoiceAdress
+                          ? "Adresse de livraison"
+                          : "Adresse"}
+                        </h6>
+                      </div>
+                      <div className="col-6 text-end">                
+                <button
+                  className="btn btn-lg  button-margin"
+                >
+                  <Pen size={20} />
+                </button>
+                <button
+                  className="btn btn-lg  button-margin"
+                >
+                  <Trash size={20} />
+                </button>
+                </div>
+                    </div>
                     <div class="text-muted">
                       <div>
                         {name} {lastName}
