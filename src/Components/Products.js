@@ -12,7 +12,7 @@ function Products(props) {
         props.listProduct.map((product) => {
           return (
             <div className="container">
-              <div class="card mb-3">
+              <div class="card mb-3 rounded-0">
                 <div class="row no-gutters">
                   <div class="col-md-4">
                     <img

@@ -27,7 +27,10 @@ function Adresses() {
   const { whishList } = data;
   return (
     <>
-      <div class="col-12 col-md-9 col-lg-8 offset-lg-1">
+      <div class="container">
+      <div className="row text-center mb-5">
+          <h4>Liste de souhaits</h4>
+        </div>
       <div class="row">
           <div class="col-12">
           {whishList &&
@@ -35,7 +38,7 @@ function Adresses() {
           whishList.map((product) => {
             return (
               <div className="container">
-              <div class="card mb-3">
+              <div class="card mb-3 rounded-0">
                 <div class="row no-gutters">
                   <div class="col-md-4">
                     <img

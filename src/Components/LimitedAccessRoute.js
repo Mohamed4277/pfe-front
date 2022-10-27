@@ -1,13 +1,17 @@
-import React from "react";
-import { Outlet, Navigate} from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import { Outlet} from "react-router-dom";
+import {useSelector} from "react-redux";
 
-function LimitedAccessRoute({children,role, ...rest}){
-   const {user}=useSelector((state)=>state)
+
+function LimitedAccessRoute({isConnected,role}){
+    const [hasRole, setHasRole]= useState(false);
+    const {user}=useSelector((state)=>state)
+
+    useEffect(    
+      () =>  setHasRole(user && user.role && user.role.some(userRole=>userRole===role)))
+
    
-   const hasRoles=user.roles.some(roleUser=>roleUser===role)
-  
-   return user.isConnected  ? <Outlet/>: <Navigate to="/"/>;
+   return isConnected  &&  <Outlet/>;
 
 }
 

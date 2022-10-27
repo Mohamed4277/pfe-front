@@ -25,15 +25,20 @@ function PaymentMode() {
     fetchData();
   }, []);
   const { paymentMode } = data;
-  console.log("........: ", paymentMode);
   return (
     <>
-      <div class="col-12 col-md-9 col-lg-8 offset-lg-1">
+      <div class="container">
+        <div className="row text-center mb-5">
+          <h4>Mode de payements</h4>
+        </div>
         <div class="row">
           <div class="col-12">
+          <button class="col-2 btn btn-primary btn-lg rounded-0 mb-3">
+            Ajouter une carte
+          </button>
             {paymentMode.map((card) => (
               <>
-                <div class="card card-lg bg-light mb-8">
+                <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
                   <div class="card-body ">
                     <h6 class="mb-6">{card.name}</h6>
                     <div class="text-muted">
@@ -46,9 +51,6 @@ function PaymentMode() {
               </>
             ))}
           </div>
-          <button class="col-12 btn btn-secondary btn-lg ms-3 me-3">
-            Ajouter une carte
-          </button>
         </div>
       </div>
     </>

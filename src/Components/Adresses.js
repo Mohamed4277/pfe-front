@@ -27,12 +27,18 @@ function Adresses() {
   const { name, lastName, adresses } = data;
   return (
     <>
-      <div class="col-12 col-md-9 col-lg-8 offset-lg-1">
+      <div class="container">
+      <div className="row text-center mb-5">
+          <h4>Adresses</h4>
+        </div>
         <div class="row">
           <div class="col-12">
+          <button class="col-2 btn btn-primary btn-lg rounded-0 mb-3">
+            Ajouter une adresse
+          </button>
             {adresses.map((adress) => (
               <>
-                <div class="card card-lg bg-light mb-8 border-0 rounded-0 mb-3">
+                <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
                   <div class="card-body">
                     <h6 class="mb-6">
                       {adress.isInvoiceAdress
@@ -54,9 +60,6 @@ function Adresses() {
               </>
             ))}
           </div>
-          <button class="col-12 btn btn-secondary btn-lg ms-3 me-3">
-            Ajouter une adresse
-          </button>
         </div>
       </div>
     </>

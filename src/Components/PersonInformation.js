@@ -27,8 +27,10 @@ function PersonInformation() {
   const { name, username, lastName, password } = myAccount;
   console.log("***************", myAccount);
   return (
-    <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
-      {" "}
+    <div className="container">
+        <div className="row text-center mb-5">
+          <h4>Information personnelle</h4>
+        </div>
       <form>
         <div className="row">
           <div className="col-12">
