@@ -16,6 +16,8 @@ import LimitedAccessRoute from "./Components/LimitedAccessRoute"
 import Adresses from "./Components/Adresses";
 import PaymentMode from "./Components/PaymentMode";
 import PersonInformation from "./Components/PersonInformation";
+import AdressForm from "./Components/AdressForm";
+import PaymentModeForm from "./Components/PaymentModeForm";
 
 
 function App() {
@@ -34,7 +36,11 @@ function App() {
           <Route path="/ordered" element={<Ordered />}></Route>
           <Route path="/order" element={<Order />}></Route>
           <Route path="/wishlist" element={<WishList />}></Route>
-          <Route path="/adress" element={<Adresses />}></Route>
+          <Route path="/adress" element={<Adresses />} exact></Route>
+          <Route path="/adress/:idAdress" element={<AdressForm />}></Route>
+          <Route path="/adressForm" element={<AdressForm />}></Route>
+          <Route path="/payment-mode-form/:idPaymentMode" element={<PaymentModeForm />}></Route>
+          <Route path="/payment-mode-form" element={<PaymentModeForm />}></Route>
           <Route path="/person-information" element={<PersonInformation />}></Route>
           <Route path="/payment-mode" element={<PaymentMode />}></Route>
         </Route>

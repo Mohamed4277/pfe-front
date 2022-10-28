@@ -6,8 +6,9 @@ import { useSelector,useDispatch } from "react-redux";
 function NavBar() {
   const navigate = useNavigate();
   const [isExpand, setIsExpand]=useState(false);
+  const [isExpandNav, setIsExpandNav]=useState(false);
   const [isExpandPerson, setIsExpandPerson]=useState(false);
-  const { cart, user } = useSelector((state) => state);
+  const { cart, user,category } = useSelector((state) => state);
   const dispatch=useDispatch();
 
   const nbItem =
@@ -24,7 +25,11 @@ function NavBar() {
           <a className="navbar-brand" href="/home" >
             <h3>MyBookStore.</h3>
           </a>
-          {user.isConnected && <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <button  OnClick={()=>setIsExpandNav(!isExpandNav)} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded={isExpandNav?"true":"false"} aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+          {user.isConnected && <div className={isExpandNav?"collapse navbar-collapse show":"collapse navbar-collapse" } id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item dropdown" onClick={()=>setIsExpand(!isExpand)}>
                 <a class={isExpand?"nav-link dropdown-toggle show":"nav-link dropdown-toggle"} 
@@ -32,16 +37,11 @@ function NavBar() {
                   Catalogue
                 </a>
                 <div class={isExpand?"dropdown-menu show rounded-0":"dropdown-menu"} aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Mathematiques</a>
-                  <a class="dropdown-item" href="#">Informatique</a>
-                  <a class="dropdown-item" href="#">Physique</a>
-                  <a class="dropdown-item" href="#">Science de la vie et de la terre</a>
-                  <a class="dropdown-item" href="#">Géographie</a>
-                  <a class="dropdown-item" href="#">Géologie</a>
+                  {category.map(cat=><a class="dropdown-item" href="#">{cat.category}</a>)}
                 </div>
              </li>
             </ul>
-            <div className="container nav-bar-align-end">
+            <div className="form-inline my-2 my-lg-0">
               <div className="col">
                 <button
                   className="btn btn-lg button-margin"

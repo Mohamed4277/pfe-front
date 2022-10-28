@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function PersonInformation() {
   const [myAccount, setMyAccount] = useState({});
-  useEffect(() => {
+  /*useEffect(() => {
     const url = "http://localhost:8080/api/users";
     const token = localStorage.getItem("access_token");
 
@@ -23,13 +24,15 @@ function PersonInformation() {
     };
 
     fetchData();
-  }, []);
-  const { name, username, lastName, password } = myAccount;
-  console.log("***************", myAccount);
+  }, []);*/
+
+
+  const { name, username, lastName } =useSelector((state)=>state.user);
+
   return (
     <div className="container">
         <div className="row text-center mb-5">
-          <h4>Information personnelle</h4>
+          <h4>Informaton personnelle</h4>
         </div>
       <form>
         <div className="row">
@@ -42,7 +45,7 @@ function PersonInformation() {
                 className="form-control form-control-sm"
                 id="accountFirstName"
                 type="text"
-                value={name}
+                defaultValue={name}
                 placeholder="First Name"
               />
             </div>
@@ -57,7 +60,7 @@ function PersonInformation() {
                 id="accountLastName"
                 type="text"
                 placeholder="Nom de famille"
-                value={lastName}
+                defaultValue={lastName}
                 required=""
               />
             </div>
@@ -70,7 +73,7 @@ function PersonInformation() {
               <input
                 className="form-control form-control-sm"
                 id="accountEmail"
-                value={username}
+                defaultValue={username}
                 type="email"
                 placeholder="Email Address"
                 required=""
@@ -86,7 +89,7 @@ function PersonInformation() {
                 className="form-control form-control-sm"
                 id="accountPassword"
                 type="password"
-                placeholder="Current Password"
+                placeholder="Password actuel"
                 required=""
               />
             </div>
@@ -100,19 +103,9 @@ function PersonInformation() {
                 className="form-control form-control-sm"
                 id="AccountNewPassword"
                 type="password"
-                placeholder="New Password */"
+                placeholder="Nouveau password"
                 required=""
               />
-            </div>
-          </div>
-          <div className="col-12 col-lg-6">
-            <div className="form-group">
-              <label className="form-label">Date</label>
-            </div>
-          </div>
-          <div className="col-12 col-lg-6">
-            <div className="form-group">
-              <label className="form-label">Genre</label>
             </div>
           </div>
           <div className="col-12">

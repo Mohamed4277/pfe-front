@@ -36,8 +36,8 @@ function Login() {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         });
-        const {username,roles} = await responseUserInformation.json();
-        dispatch({type: "IS_CONNECTED", payload:{isConnected:true, username, roles}})
+        const {id,lastName, name,username,roles} = await responseUserInformation.json();
+        dispatch({type: "IS_CONNECTED", payload:{isConnected:true,id,lastName, name, username, roles}})
         navigate("/home");
       } catch (error) {
         setIsConnected(true)

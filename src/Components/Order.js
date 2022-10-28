@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import data from "../Data";
+import Card from "../Components/Card"
 
 function Order() {
   const [myOrders, setMyOrders] = useState({});
@@ -51,28 +52,7 @@ function Order() {
 	                     {ord.product.map(book=>
                       <>
                       
-                      
-                      <div className="container">
-              <div class="card mb-3">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <img
-                      src="https://servimg.eyrolles.com/static/media/0188/9782416000188_internet_b200x200.jpg"
-                      width={190}
-                    />
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{book.name}</h5>
-                      <p class="card-text">
-                        <p>{book.price} €</p>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-                      
+                      <Card product={book}/>
                       
                       </>
                       )} 

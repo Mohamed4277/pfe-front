@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pen, Trash } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 import data from "../Data";
 
 function PaymentMode() {
@@ -34,9 +35,11 @@ function PaymentMode() {
         </div>
         <div class="row">
           <div class="col-12">
-          <button class="col-2 btn btn-primary btn-lg rounded-0 mb-3">
-            Ajouter une carte
-          </button>
+          <Link to={"/payment-mode-form"}>          
+            <button class="col-2 btn btn-primary btn-lg rounded-0 mb-3">
+              Ajouter une carte
+            </button>
+          </Link>
             {paymentMode.map((card) => (
               <>
                 <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
@@ -48,8 +51,8 @@ function PaymentMode() {
                           </h6>
                         </div>
                       <div className="col-6 text-end">                
-                      <button className="btn btn-lg  button-margin">
-                        <Pen size={20} />
+                      <button className="btn btn-lg  button-margin" >
+                      <Link to={"/payment-mode-form/"+ card.id}><Pen size={20} /></Link>
                       </button>
                       <button className="btn btn-lg  button-margin">
                         <Trash size={20} />

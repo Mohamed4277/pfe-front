@@ -1,6 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cart from "../reducer/cart";
-import user from "../reducer/user";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, 
   persistStore,   
@@ -12,7 +10,12 @@ import { persistReducer,
   REGISTER} from "redux-persist";
 import { combineReducers } from "redux";
 import thunk from "redux-thunk";
-
+import cart from "../reducer/cart";
+import user from "../reducer/user";
+import adress from "../reducer/adress";
+import paymentMode from "../reducer/paymentMode";
+import category from "../reducer/category";
+import wishList from "../reducer/wishList";
 
 const persistConfig = {
   key: "root",
@@ -21,7 +24,11 @@ const persistConfig = {
 
 const reducer = combineReducers({
   cart: cart,
+  category: category,
   user:user,
+  adress:adress,
+  paymentMode:paymentMode,
+  wishList:wishList
 });
 
 const persisteReducer = persistReducer(persistConfig, reducer);

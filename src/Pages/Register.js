@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 function Register() {
   const [name, setName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -59,10 +56,10 @@ function Register() {
     setName(event.target.name.value);
   }
   return (
-    <div className="container">
+    <div className="Auth-form-container">
       {/* <h3 className="Auth-form-title margin-title">MyBookStore.</h3> */}
       <form
-        className="container"
+        className=".Auth-form"
         onSubmit={handlesubmit}
       >
         <div className="row">
@@ -70,7 +67,7 @@ function Register() {
             <label htmlFor="lastName">Nom</label>
             <input
               type="name"
-              className="form-control"
+              className="form-control rounded-0"
               id="lastName"
               name="lastName"
               placeholder="Nom"
@@ -81,7 +78,7 @@ function Register() {
             <label htmlFor="name">Prénom</label>
             <input
               type="name"
-              className="form-control"
+              className="form-control rounded-0"
               id="name"
               name="name"
               placeholder="Prénom"
@@ -94,7 +91,7 @@ function Register() {
             <label htmlFor="email">Email</label>
             <input
               type="email"
-              className="form-control"
+              className="form-control rounded-0"
               id="email"
               name="email"
               placeholder="Email"
@@ -105,7 +102,7 @@ function Register() {
             <label htmlFor="password">password</label>
             <input
               type="password"
-              className="form-control"
+              className="form-control rounded-0"
               id="password"
               name="password"
               placeholder="Password"
@@ -117,7 +114,7 @@ function Register() {
           <label htmlFor="adressPartOne">Adresse</label>
           <input
             type="text"
-            className="form-control"
+            className="form-control rounded-0"
             id="adressPartOne"
             name="adressPartOne"
             placeholder="Adresse"
@@ -128,7 +125,7 @@ function Register() {
           <label htmlFor="adressPartTwo">Partie 2</label>
           <input
             type="text"
-            className="form-control"
+            className="form-control rounded-0"
             id="adressPartTwo"
             name="adressPartTwo"
             placeholder="Adresse 2"
@@ -140,7 +137,7 @@ function Register() {
             <label htmlFor="city">Ville</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control rounded-0"
               id="city"
               name="city"
               placeholder="Ville"
@@ -151,7 +148,7 @@ function Register() {
             <label htmlFor="zip">Code postal</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control rounded-0"
               id="zip"
               name="zip"
               placeholder="Code postal"
@@ -160,7 +157,7 @@ function Register() {
           </div>
         </div>
         <div className="form-group">
-          <button type="submit" className="btn btn-lg btn-primary submit-margin">
+          <button type="submit" className="btn btn-lg btn-primary rounded-0">
             Soumettre
           </button>
         </div>
