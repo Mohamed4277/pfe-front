@@ -14,21 +14,21 @@ return <>
                   </div>
                   <div class="col-md-10 ps-3 pt-3 pb-3">
                       <h5 class="card-title">{product.name}</h5>
-                      <p class="card-text">{product.description}</p>
+                      <div class="card-text">{product.description}</div>
                       <p class="card-text">
                         <p>{product.price} €</p>
-                        {addItem && <div className="row"><button
+                        {addItem && <button
                           type="button"
                           class="btn btn-lg btn-primary rounded-0"
                           onClick={addItem}
                         >
                           Ajouter au panier
-                        </button></div>}
+                        </button>}
                         {removeItem && updateItem &&
 
 <>
 <input
-className="form-control"
+className="form-control width-quantity mb-2 rounded-0"
 id="nbOfProduct"
 name="nbOfProduct"
 onChange={updateItem
@@ -36,7 +36,7 @@ onChange={updateItem
 />
   <button
     type="button"
-    className="btn btn btn-danger btn-lg button-margin"
+    className="btn btn btn-danger btn-lg button-margin rounded-0"
     onClick={removeItem}
   >
     Supprimer du panier

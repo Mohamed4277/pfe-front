@@ -19,15 +19,15 @@ function Cart() {
     }, 0);
 
   return (
-    <>
-                  <div className="row mb-5">
+    <>          <div className="container">
+                      <div className="row mb-5">
                 <div className="col align-self-center total-purchase purchase">
                   Total des achats: {total} €
                 </div>
                 <div className="col align-self-center button-order purchase text-end">
                   <button
                     type="button"
-                    className="btn btn-success btn-lg button-margin"
+                    className="btn btn-success btn-lg button-margin rounded-0"
                     onClick={() => {
                       navigate("/ordered");
                       localStorage.removeItem("persist:root");
@@ -43,6 +43,8 @@ function Cart() {
                   </button>
                 </div>
               </div>
+    </div>
+  
       {cart &&
         cart.length > 0 &&
         cart.map((product) => {

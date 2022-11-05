@@ -41,6 +41,10 @@
   width: 100%;
 }
 
+.width-quantity{
+  width: 7%;
+}
+
 .Auth-form-container {
   display: flex;
   justify-content: center;
