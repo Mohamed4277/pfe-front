@@ -2,9 +2,11 @@ import React, { useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
 import data from "../Data";
 import Card from "./Card"
+import { useSelector } from "react-redux";
 
 function WishList() {
-  const [myAdresses, setMyAdresses] = useState({});
+  const {wishList}=useSelector((state)=>state)
+  
   const dispatch = useDispatch();
   useEffect(() => {
     const url = "http://localhost:8080/api/users";
@@ -18,8 +20,6 @@ function WishList() {
           },
         });
         const json = await response.json();
-        setMyAdresses(json[0]);
-        console.log("", json[0]);
       } catch (error) {
         console.log("error", error);
       }
@@ -27,18 +27,16 @@ function WishList() {
 
     fetchData();
   }, []);
-  const { whishList } = data;
   return (
     <>
-      <div class="container">
-      <div className="row text-center mb-5">
+
+        <div className="row text-center mb-5">
           <h4>Liste de souhaits</h4>
         </div>
-      <div class="row">
-          <div class="col-12">
-          {whishList &&
-          whishList.length > 0 &&
-          whishList.map((product) => {
+   
+          {wishList &&
+          wishList.length > 0 &&
+          wishList.map((product) => {
             return (
               <Card product={product} addItem={() =>
                 dispatch({
@@ -47,9 +45,7 @@ function WishList() {
                 })}/>
             );
           })}
-          </div>
-      </div>
-      </div>
+
     </>
   );
 }

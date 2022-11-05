@@ -6,7 +6,7 @@ function Products(props) {
 
   return (
     <>
-      {props.listProduct &&
+      { props.listProduct &&
         props.listProduct.length > 0 &&
         props.listProduct.map((product) => {
           return (

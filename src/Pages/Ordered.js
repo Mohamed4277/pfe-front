@@ -11,7 +11,7 @@ function Ordered() {
           <div className="col ordered-button">
             <button
               type="button"
-              className="btn btn-lg btn-success"
+              className="btn btn-lg btn-success rounded-0"
               onClick={() => navigate("/home")}
             >
               Retour à la liste des produits
