@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import data from "../Data";
 
 function PaymentMode() {
-  const [myAdresses, setMyAdresses] = useState({});
+  const [myPaymentMode, setMyPaymentMode] = useState([]);
   useEffect(() => {
-    const url = "http://localhost:8080/api/users";
+    const {user}= JSON.parse(localStorage.getItem("persist:root"));
+    const username=JSON.parse(user).username;
+    const url = "http://localhost:8080/api/user/" +username;
     const token = localStorage.getItem("access_token");
     const fetchData = async () => {
       try {
@@ -17,8 +19,7 @@ function PaymentMode() {
           },
         });
         const json = await response.json();
-        setMyAdresses(json[0]);
-        console.log("", json[0]);
+        setMyPaymentMode(json.paymentMode);
       } catch (error) {
         console.log("error", error);
       }
@@ -26,7 +27,6 @@ function PaymentMode() {
 
     fetchData();
   }, []);
-  const { paymentMode } = data;
   return (
     <>
       <div class="container">
@@ -40,7 +40,7 @@ function PaymentMode() {
               Ajouter une carte
             </button>
           </Link>
-            {paymentMode.map((card) => (
+            {myPaymentMode && myPaymentMode.map((card) => (
               <>
                 <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
                   <div class="card-body ">

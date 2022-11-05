@@ -1,15 +1,13 @@
 import React, { useEffect, useState} from "react";
 import { useDispatch } from "react-redux";
-import data from "../Data";
 import Card from "./Card"
-import { useSelector } from "react-redux";
 
 function WishList() {
-  const {wishList}=useSelector((state)=>state)
-  
-  const dispatch = useDispatch();
+  const [wishList, setWishList] = useState({});
   useEffect(() => {
-    const url = "http://localhost:8080/api/users";
+    const {user}= JSON.parse(localStorage.getItem("persist:root"));
+    const username=JSON.parse(user).username;
+    const url = "http://localhost:8080/api/user/" +username;
     const token = localStorage.getItem("access_token");
     const fetchData = async () => {
       try {
@@ -20,6 +18,7 @@ function WishList() {
           },
         });
         const json = await response.json();
+        setWishList(json.whishList);
       } catch (error) {
         console.log("error", error);
       }
@@ -27,6 +26,8 @@ function WishList() {
 
     fetchData();
   }, []);
+  
+  const dispatch = useDispatch();
   return (
     <>
 
@@ -35,8 +36,9 @@ function WishList() {
         </div>
    
           {wishList &&
-          wishList.length > 0 &&
-          wishList.map((product) => {
+          wishList.product &&
+          wishList.product.length > 0 &&
+          wishList.product.map((product) => {
             return (
               <Card product={product} addItem={() =>
                 dispatch({

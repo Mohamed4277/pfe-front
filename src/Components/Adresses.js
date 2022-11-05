@@ -4,9 +4,13 @@ import data from "../Data";
 import { Link } from "react-router-dom";
 
 function Adresses() {
-  const [myAdresses, setMyAdresses] = useState({});
+  const [myAdresses, setMyAdresses] = useState([]);
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
   useEffect(() => {
-    const url = "http://localhost:8080/api/users";
+    const {user}= JSON.parse(localStorage.getItem("persist:root"));
+    const username=JSON.parse(user).username;
+    const url = "http://localhost:8080/api/user/" +username;
     const token = localStorage.getItem("access_token");
     const fetchData = async () => {
       try {
@@ -17,7 +21,9 @@ function Adresses() {
           },
         });
         const json = await response.json();
-        setMyAdresses(json[0]);
+        setMyAdresses(json.adresses);
+        setLastName(JSON.parse(user).lastName)
+        setName(JSON.parse(user).name)
       } catch (error) {
         console.log("error", error);
       }
@@ -25,7 +31,6 @@ function Adresses() {
 
     fetchData();
   }, []);
-  const { name, lastName, adresses } = data;
   return (
     <>
       <div class="container">
@@ -39,7 +44,7 @@ function Adresses() {
               Ajouter une adresse
             </button>
           </Link>
-            {adresses.map((adress) => (
+            {myAdresses && myAdresses.map((adress) => (
               <>
                 <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
                   <div class="card-body">
