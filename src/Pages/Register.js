@@ -18,6 +18,16 @@ function Register() {
 
     const fetchData = async () => {
       try {
+        console.log('*************: ', {
+          name,
+          lastName,
+          username: email,
+          password,
+          adressPartOne,
+          adressPartTwo,
+          city,
+          zip,
+        })
         const response = await fetch(url, {
           method: "POST",
           headers: {
@@ -28,13 +38,14 @@ function Register() {
             lastName,
             username: email,
             password,
+            rawPassword:password,
             adressPartOne,
             adressPartTwo,
             city,
             zip,
           }),
         });
-        navigate("/login");
+        navigate("/");
       } catch (error) {
         console.log("error", error);
       }

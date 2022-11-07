@@ -1,17 +1,86 @@
-import React, { useState} from "react";
-import {  useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React, {useState, useEffect} from "react";
+import { useParams,useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-function AdressForm(props) {
-  const [name, setName] = useState("");
-  const [lastName, setlastName] = useState("");
+function AdressForm() {
+  const [nameAdress, setName] = useState("");
+  const [lastNameAdress, setlastName] = useState("");
   const [adressPartOne, setAdressPartOne] = useState("");
   const [adressPartTwo, setAdressPartTwo] = useState("");
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
+  const [isSubmit,setIsSubmit]=useState(false);
   const params = useParams();
-  const [adress]=useSelector((state)=>state.adress.filter(adr=>adr.id==params.idAdress))
-  const user=useSelector((state)=>state.user)
+  const [adress,setAdress]=useState({})
+  const navigate = useNavigate();
+  const dispatch=useDispatch();
+
+  useEffect(() => {
+    const url =params.idAdress && "http://localhost:8080/api/adress/" + params.idAdress;
+    const token =params.idAdress &&  localStorage.getItem("access_token");
+    const fetchData =params.idAdress && (async () => {
+      try {
+        const response =url && await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-Type": "application/json",
+          },
+        });
+        const json = await response.json();
+        console.log('Adress: ' , json);
+        setAdress(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    });
+
+    params.idAdress && fetchData();
+  }, []);
+
+
+  useEffect(() => {
+    const {user}= JSON.parse(localStorage.getItem("persist:root"));
+    const username=JSON.parse(user).username;
+    const url = params.idAdress? 
+                "http://localhost:8080/api/user/" + username + "/adress" + "/"+params.idAdress:           
+                "http://localhost:8080/api/user/" + username + "/adress";
+    const token = localStorage.getItem("access_token");
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-Type": "application/json",
+          },
+          method: params.idAdress? 'PUT':'POST',
+          body:params.idAdress? JSON.stringify({
+            id:params.idAdress,
+            nameAdress,
+            lastNameAdress,
+            adressPartOne,
+            adressPartTwo,
+            zip,
+            city
+          }):JSON.stringify({
+            nameAdress,
+            lastNameAdress,
+            adressPartOne,
+            adressPartTwo,
+            zip,
+            city
+          })
+        });
+        const json = await response.json();
+        dispatch({type:"DISPLAY_ADRESS", payload:{adress:json}})
+        navigate("/adress")
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    isSubmit && fetchData();
+  }, [isSubmit]);
+
   
   const handlesubmit = (event) => {
     event.preventDefault();
@@ -19,8 +88,9 @@ function AdressForm(props) {
     setAdressPartTwo(event.target.adressPartTwo.value);
     setCity(event.target.city.value);
     setZip(event.target.zip.value);
-    setlastName(event.target.lastName.value);
-    setName(event.target.name.value);
+    setlastName(event.target.lastNameAdress.value);
+    setName(event.target.nameAdress.value);
+    setIsSubmit(true)
   }
   return (
     <>  
@@ -36,23 +106,23 @@ function AdressForm(props) {
           <input
             type="name"
             className="form-control rounded-0"
-            id="lastName"
-            name="lastName"
+            id="lastNameAdress"
+            name="lastNameAdress"
             placeholder="Nom"
             required
-            defaultValue={params.idAdress && user && user.lastName}
+            defaultValue={params.idAdress && adress.lastNameAdress}
           />
         </div>
         <div className="form-group col-md-6">
-          <label htmlFor="name">Prénom</label>
+          <label htmlFor="nameAdress">Prénom</label>
           <input
             type="name"
             className="form-control rounded-0"
-            id="name"
-            name="name"
+            id="nameAdress"
+            name="namnameAdresse"
             placeholder="Prénom"
             required
-            defaultValue={params.idAdress && user && user.name}
+            defaultValue={params.idAdress && adress.nameAdress}
           />
         </div>
       </div>

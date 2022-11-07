@@ -1,33 +1,39 @@
-const initPaymentModey=[
-  {
-    id:1,
-    name: "carte 1",
-    cardType: "Visa",
-    cardNumber: "44554445444554",
-    codeSecret: 456,
-  },
-  {
-    id:2,
-    name: "carte 2",
-    cardType: "Card",
-    cardNumber: "445544545444554",
-    codeSecret: 367,
-  },
-  { id:3,
-    name: "carte 3",
-    cardType: "Visa",
-    cardNumber: "44554455644554",
-    codeSecret: 167,
-  },
-];
+const initPaymentModey=[];
 
 const paymentMode = (paymentMode =initPaymentModey  , action) => {
 
   switch (action.type)
+  {
+  case "GET_PAYMENT_MODE":
+      {console.log('action.payload',action.payload);return action.payload}  
+  case "DISPLAY_PAYMENT_MODE":
+       { if (action.payload.paymentMode.id){
+        return [...paymentMode.filter(ad=>ad.id !== action.payload.paymentMode.id), action.payload.paymentMode ]
+       }
+        return [...paymentMode, action.payload.paymentMode]
+      }
+  case "DELETE_PAYMENT_MODE":
+    {console.log('reducer adress: ' ,  paymentMode.filter(ad=>ad.id != action.payload.id)); return paymentMode.filter(ad=>ad.id != action.payload.id)}
+  default:
+     return paymentMode
+  }
+
+  /*switch (action.type)
         {case "GET_PAYMENT_MODE":
+            {console.log("lllllllllllllllllllll",action.payload );
+            return action.payload.paymentMode}
+        case "DISPLAY_PAYMENT_MODE":
+              { if (action.payload.paymentMode.id){
+               return [...paymentMode.filter(ad=>ad.id !== action.payload.paymentMode.id), action.payload.paymentMode ]
+              }
+               return [...paymentMode, action.payload.paymentMode]
+             }
+         case "DELETE_PAYMENT_MODE":
+           {return paymentMode.filter(ad=>ad.id !== action.payload.id)}
+         default:
             return paymentMode
-        }
-  return paymentMode;
+            
+        }*/
 
   }
 export default paymentMode;

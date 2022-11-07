@@ -1,15 +1,87 @@
-import React, { useState} from "react";
-import {  useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React,{useEffect, useState} from "react";
+import {  useParams, Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function PaymentModeForm(props) {
   const params = useParams();
-  const [paymentMode]=useSelector((state)=>state.paymentMode.filter(pay=>pay.id==params.idPaymentMode))
+  const [paymentMode,setPaymentMode]=useState({})
+  const [name, setName]=useState("");
+  const [cardType,setCardType]=useState("");
+  const [cardNumber,setCardNumber]=useState("");
+  const [codeSecret, setCodeSecret]=useState("");
+  const [isSubmit,setIsSubmit]=useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  console.log('222222222222222222',{params,paymentMode })
+  useEffect(() => {
+    const url =params.idPaymentMode && "http://localhost:8080/api/payment-mode/" + params.idPaymentMode;
+    const token =params.idPaymentMode &&  localStorage.getItem("access_token");
+    const fetchData =params.idPaymentMode && (async () => {
+      try {
+        const response =url && await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-Type": "application/json",
+          },
+        });
+        const json = await response.json();
+        console.log('llllllllkkkkkjjjj: ', json.paymentMode)
+        setPaymentMode(json)
+      } catch (error) {
+        console.log("error", error);
+      }
+    });
+
+    params.idPaymentMode && fetchData();
+  }, []);
+
+
+  useEffect(() => {
+    const {user}= JSON.parse(localStorage.getItem("persist:root"));
+    const username=JSON.parse(user).username;
+    const url = params.idPaymentMode? 
+                "http://localhost:8080/api/user/" + username + "/payment-mode" + "/"+params.idPaymentMode:           
+                "http://localhost:8080/api/user/" + username + "/payment-mode";
+    const token = localStorage.getItem("access_token");
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-Type": "application/json",
+          },
+          method: params.idPaymentMode? 'PUT':'POST',
+          body:params.idPaymentMode? JSON.stringify({
+            id:params.idPaymentMode,
+            name,
+            cardType,
+            cardNumber,
+            codeSecret
+          }):JSON.stringify({
+            name,
+            cardType,
+            cardNumber,
+            codeSecret
+          })
+        });
+        const json = await response.json();
+        dispatch({type:"DISPLAY_PAYMENT_MODE", payload:{paymentMode:json}})
+        navigate("/payment-mode")
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    isSubmit && fetchData();
+  }, [isSubmit]);
 
   const handlesubmit = (event) => {
     event.preventDefault();
+    setCodeSecret(event.target.codeSecret.value);
+    setCardNumber(event.target.cardNumber.value);
+    setCardType(event.target.cardType.value);
+    setName(event.target.name.value);
+    setIsSubmit(true)
   }
   return (
     <>    
@@ -69,12 +141,10 @@ function PaymentModeForm(props) {
               required
               defaultValue={params.idPaymentMode && paymentMode && paymentMode.codeSecret}
             />
-          </div>
-          <Link to={"/payment-mode"}>          
-            <button class="col-12 btn btn-primary btn-lg rounded-0">
+          </div>         
+            <button  type="submit" class="col-12 btn btn-primary btn-lg rounded-0">
               Soumettre
             </button>
-          </Link>
         </div>
       </form>
     </div>
