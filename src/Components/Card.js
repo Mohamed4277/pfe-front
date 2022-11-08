@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({product,addItem,removeItem,updateItem}){
+function Card({product,addItem,removeItem,updateItem,addToWishList}){
 
 return <>
             <div className="container">
@@ -17,13 +17,20 @@ return <>
                       <div class="card-text">{product.description}</div>
                       <p class="card-text">
                         <p>{product.price} €</p>
-                        {addItem && <button
+                        {addItem && <><button
                           type="button"
                           class="btn btn-lg btn-primary rounded-0"
                           onClick={addItem}
                         >
                           Ajouter au panier
-                        </button>}
+                        </button>
+                        {addToWishList && <button
+                          type="button"
+                          class="btn btn-lg btn-primary ms-3 rounded-0"
+                          onClick={addToWishList}
+                        >
+                          Ajouter à la liste de souhait
+                        </button>}</>}
                         {removeItem && updateItem &&
 
 <>
@@ -31,8 +38,7 @@ return <>
 className="form-control width-quantity mb-2 rounded-0"
 id="nbOfProduct"
 name="nbOfProduct"
-onChange={updateItem
-}
+onChange={updateItem}
 />
   <button
     type="button"

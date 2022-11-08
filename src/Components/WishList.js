@@ -1,13 +1,14 @@
-import React, { useEffect, useState} from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect} from "react";
+import { useDispatch , useSelector} from "react-redux";
 import Card from "./Card"
 
 function WishList() {
-  const [wishList, setWishList] = useState({});
+  const dispatch=useDispatch();
+  const {wishList}=useSelector((state)=>state)
   useEffect(() => {
     const {user}= JSON.parse(localStorage.getItem("persist:root"));
     const username=JSON.parse(user).username;
-    const url = "http://localhost:8080/api/user/" +username;
+    const url = "http://localhost:8080/api/user/" + username;
     const token = localStorage.getItem("access_token");
     const fetchData = async () => {
       try {
@@ -18,7 +19,8 @@ function WishList() {
           },
         });
         const json = await response.json();
-        setWishList(json.whishList);
+        console.log("ggggggggggggggghghhghgh : ", json.whishList.product)
+        dispatch({type:"GET_WISH_LIST", payload:json.whishList.product})
       } catch (error) {
         console.log("error", error);
       }
@@ -27,7 +29,6 @@ function WishList() {
     fetchData();
   }, []);
   
-  const dispatch = useDispatch();
   return (
     <>
 
@@ -36,15 +37,15 @@ function WishList() {
         </div>
    
           {wishList &&
-          wishList.product &&
-          wishList.product.length > 0 &&
-          wishList.product.map((product) => {
+          wishList.length > 0 &&
+          wishList.map((product) => {
             return (
               <Card product={product} addItem={() =>
                 dispatch({
                   type: "ADD_ITEM_IN_BASKET",
                   payload: { ...product, quantity: 1 },
-                })}/>
+                })}
+                />
             );
           })}
 

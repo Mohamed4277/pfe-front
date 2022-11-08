@@ -27,7 +27,6 @@ function AdressForm() {
           },
         });
         const json = await response.json();
-        console.log('Adress: ' , json);
         setAdress(json);
       } catch (error) {
         console.log("error", error);
