@@ -1,14 +1,16 @@
 import { useDispatch } from "react-redux";
 import Card from "./Card"
+import { useSelector } from "react-redux";
 
-function Products(props) {
+function Products() {
   const dispatch = useDispatch();
+  const {product:listProduct}= useSelector((state)=>state)
 
   return (
     <>
-      { props.listProduct &&
-        props.listProduct.length > 0 &&
-        props.listProduct.map((product) => {
+      { listProduct &&
+        listProduct.length > 0 &&
+        listProduct.map((product) => {
           return (
             <Card product={product} addItem={() =>
               dispatch({

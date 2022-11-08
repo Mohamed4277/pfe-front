@@ -16,6 +16,7 @@ import adress from "../reducer/adress";
 import paymentMode from "../reducer/paymentMode";
 import category from "../reducer/category";
 import wishList from "../reducer/wishList";
+import product from "../reducer/product";
 
 const persistConfig = {
   key: "root",
@@ -27,6 +28,7 @@ const reducer = combineReducers({
   category: category,
   user:user,
   adress:adress,
+  product:product,
   paymentMode:paymentMode,
   wishList:wishList
 });

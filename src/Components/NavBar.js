@@ -9,6 +9,7 @@ function NavBar() {
   const [isExpandNav, setIsExpandNav]=useState(false);
   const [isExpandPerson, setIsExpandPerson]=useState(false);
   const { cart, user,category } = useSelector((state) => state);
+  const [categorySelected,setCategorySelected]=useState();
   const dispatch=useDispatch();
 
   useEffect(()=>{
@@ -23,7 +24,6 @@ function NavBar() {
           },
         });
         const json = await response.json();
-        console.log('44444444444', json)
         dispatch({type:"GET_CATEGORY", payload:json})
       } catch (error) {
         console.log("error", error);
@@ -31,10 +31,30 @@ function NavBar() {
     };
 
     fetchData();
-
-
-
   },[])
+
+
+  useEffect(()=>{
+    const url=categorySelected? "http://localhost:8080/api/product/category/" + categorySelected:
+    "http://localhost:8080/api/product";
+    const token =localStorage.getItem("access_token");
+    const fetchDataByCategory =async () => {
+      try {
+        const response = await fetch(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "content-Type": "application/json",
+          },
+        });
+        const json = await response.json();
+        dispatch({type:"GET_PRODUCTS", payload:json})
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchDataByCategory();
+  },[categorySelected])
 
   const nbItem =
     cart &&
@@ -62,7 +82,7 @@ function NavBar() {
                   Catalogue
                 </a>
                 <div class={isExpand?"dropdown-menu show rounded-0":"dropdown-menu"} aria-labelledby="navbarDropdown">
-                  {category.map(cat=><a class="dropdown-item" href="#" onClick={()=>{console.log("", cat.category)}}>{cat.category}</a>)}
+                  {category.map(cat=><a class="dropdown-item" href="#" onClick={()=>{setCategorySelected(cat.category)}}>{cat.category}</a>)}
                 </div>
              </li>
             </ul>

@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Products from "../Components/Products";
+import { useDispatch } from "react-redux";
 
 function Home() {
-  const [listProduct, setListProduct] = useState();
   const [valueToSearch, setValueToSearch] = useState();
-
+  const dispatch=useDispatch();
   useEffect(() => {
     const url =
       valueToSearch && valueToSearch.length > 0
         ? "http://localhost:8080/api/product/search?name=" + valueToSearch
         : "http://localhost:8080/api/product";
     const token = localStorage.getItem("access_token");
-
-    console.log('****** valueToSearch: ', valueToSearch)
-
     const fetchData = async () => {
       try {
         const response = await fetch(url, {
@@ -23,7 +20,7 @@ function Home() {
           },
         });
         const json = await response.json();
-        setListProduct(json);
+        dispatch({type:"GET_PRODUCTS", payload:json})
       } catch (error) {
         console.log("error", error);
       }
@@ -60,7 +57,7 @@ function Home() {
         </div>
       </form>
 
-      <Products listProduct={listProduct} />
+      <Products />
     </>
   );
 }
