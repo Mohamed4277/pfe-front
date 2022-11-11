@@ -85,6 +85,11 @@
   margin-top: 24px;
 }
 
+.order-pay {
+  background-color: aliceblue;
+    height: 120px;
+}
+
 .form-group {
   margin-top: 14px;
   margin-bottom: 14px;

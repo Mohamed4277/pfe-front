@@ -25,7 +25,6 @@ function PaymentModeForm(props) {
           },
         });
         const json = await response.json();
-        console.log('llllllllkkkkkjjjj: ', json.paymentMode)
         setPaymentMode(json)
       } catch (error) {
         console.log("error", error);

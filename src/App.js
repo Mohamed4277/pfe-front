@@ -10,11 +10,12 @@ import Cart from "./Pages/Cart";
 import NavBar from "./Components/NavBar";
 import Ordered from "./Pages/Ordered";
 import ErrorPage from "./Pages/ErrorPage"
+import PaymentValidate from "./Pages/PaymentValidate"
+import PaymentMode from "./Components/PaymentMode";
 import Order from "./Components/Order";
 import WishList from "./Components/WishList"
 import LimitedAccessRoute from "./Components/LimitedAccessRoute"
 import Adresses from "./Components/Adresses";
-import PaymentMode from "./Components/PaymentMode";
 import PersonInformation from "./Components/PersonInformation";
 import AdressForm from "./Components/AdressForm";
 import PaymentModeForm from "./Components/PaymentModeForm";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/payment-mode-form" element={<PaymentModeForm />}></Route>
           <Route path="/person-information" element={<PersonInformation />}></Route>
           <Route path="/payment-mode" element={<PaymentMode />}></Route>
+          <Route path="/payment-validate" element = {<PaymentValidate/>}></Route>
         </Route>
       <Route path="*" element={<ErrorPage />}></Route>
       </Routes>

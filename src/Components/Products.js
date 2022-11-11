@@ -26,7 +26,6 @@ function Products() {
           method: "POST"
         }));
         const json =productToAdd && await response.json();
-        console.log('******vvvvvvvvvv**********: ', json.product);
         productToAdd && dispatch({type:"ADD_PRODUCT_TO_WISH_LIST", payload:json.product})
       } catch (error) {
         console.log("error", error);
@@ -36,15 +35,13 @@ function Products() {
     productToAdd && fetchData();
   }, [productToAdd]);
 
-console.log("****************: ", productToAdd)
-
   return (
     <>
       { listProduct &&
         listProduct.length > 0 &&
         listProduct.map((product) => {
           return (
-            <Card product={product} addItem={() =>
+            <Card  product={product} addItem={() =>
               dispatch({
                 type: "ADD_ITEM_IN_BASKET",
                 payload: { ...product, quantity: 1 },

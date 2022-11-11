@@ -1,4 +1,4 @@
-const data = {
+/*const data = {
   id: 5,
   name: "John Travolta",
   username: "john",
@@ -145,4 +145,4 @@ const data = {
   ],
 };
 
-export default data;
+export default data;*/

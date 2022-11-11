@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
-import { Cart2, Power, Person } from "react-bootstrap-icons";
+import { Cart3, Power, Person } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
+import { persistor } from "../redux/store";
+import { PURGE } from 'redux-persist';
 
 function NavBar() {
   const navigate = useNavigate();
@@ -112,14 +114,17 @@ function NavBar() {
                   className="btn btn-lg  button-margin"
                 >
                   <div className="d-inline ft-nb-item">{nbItem}</div>
-                  <Cart2 size={20} />
+                  <Cart3 size={20} />
                 </button>
                 <button
                   onClick={() => {
+                    /*persistor.purge()*/
                     window.localStorage.clear();
                     dispatch({type:"IS_CONNECTED", payload:{isConnected:false}})
-                    dispatch({type:"REMOVE_DART", payload:{isConnected:false}})
-                    navigate("/");
+                    dispatch({type:"REMOVE_CART"})
+                    /*dispatch({type: "USER_LOGOUT"})*/
+                    /*persistor.purge()*/
+                    navigate("/")
                   }}
                   className="btn btn-lg button-margin"
                 >

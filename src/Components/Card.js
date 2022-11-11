@@ -1,6 +1,11 @@
 import React from "react";
+import { Heart } from "react-bootstrap-icons";
 
-function Card({product,addItem,removeItem,updateItem,addToWishList}){
+function Card({product,cart,addItem,removeItem,updateItem,addToWishList}){
+
+  console.log('tttttt',cart)
+
+  console.log('5555555555555555555555', cart && cart.length> 0 && cart.filter((item=>item.id==product.id)));
 
 return <>
             <div className="container">
@@ -26,10 +31,10 @@ return <>
                         </button>
                         {addToWishList && <button
                           type="button"
-                          class="btn btn-lg btn-primary ms-3 rounded-0"
+                          class="btn btn-lg ms-3 rounded-0 btn btn-outline-secondary"
                           onClick={addToWishList}
                         >
-                          Ajouter à la liste de souhait
+                        <Heart size={20} />
                         </button>}</>}
                         {removeItem && updateItem &&
 
@@ -38,6 +43,7 @@ return <>
 className="form-control width-quantity mb-2 rounded-0"
 id="nbOfProduct"
 name="nbOfProduct"
+defaultValue={cart && cart.length >0 && cart.filter((item=>item.id==product.id))[0].quantity}
 onChange={updateItem}
 />
   <button

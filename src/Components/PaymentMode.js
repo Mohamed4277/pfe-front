@@ -23,7 +23,6 @@ function PaymentMode() {
           },
         });
         const json = await response.json();
-        console.log('44444444444444444444',json.paymentMode)
         dispatch({type:"GET_PAYMENT_MODE", payload:json.paymentMode})
       } catch (error) {
         console.log("error", error);
