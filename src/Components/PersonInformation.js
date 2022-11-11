@@ -109,7 +109,7 @@ function PersonInformation() {
             </div>
           </div>
           <div className="col-12">
-            <button type="button" class="btn btn-lg btn-primary">
+            <button type="button" class="btn btn-lg btn-primary rounded-0">
               Sauvegarder
             </button>
           </div>

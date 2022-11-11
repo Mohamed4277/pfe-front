@@ -28,9 +28,9 @@ function App() {
     <>
     <NavBar />
       <Routes>
-       <Route path="/" element={<Login />}></Route>
-       <Route path="/register" element={<Register />}></Route>
-        <Route element={<LimitedAccessRoute isConnected={user.isConnected}/>}>        
+       <Route path="/" element={user.isConnected?<Home />:<Login />}></Route>
+       <Route path="/register" element={user.isConnected?<Home />:<Register />}></Route>
+        {user.isConnected && <Route element={<LimitedAccessRoute isConnected={user.isConnected}/>}>        
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/my-account" element={<MyAcount />}></Route>
@@ -45,8 +45,9 @@ function App() {
           <Route path="/person-information" element={<PersonInformation />}></Route>
           <Route path="/payment-mode" element={<PaymentMode />}></Route>
           <Route path="/payment-validate" element = {<PaymentValidate/>}></Route>
-        </Route>
-      <Route path="*" element={<ErrorPage />}></Route>
+          <Route path="*" element={<ErrorPage />}></Route>
+        </Route>}
+        {!user.isConnected &&<Route path="*" element={<Login />}></Route>}
       </Routes>
     </>
   );
