@@ -102,7 +102,8 @@ function PaymentValidate() {
     return (
         <>
           <div class="container">
-          <div className="row text-center mb-5">
+          <div className="row mb-5">
+          <div class="col-12">
           {cart.length > 0 && <div className="order-pay row mb-5">
         <h5 className="col align-self-center total-purchase purchase">
           Total des achats: {total} €
@@ -119,6 +120,7 @@ function PaymentValidate() {
           </button>
         </div>
       </div>}  
+          </div>
           </div>
             <div class="row">
               <div class="col-12">
