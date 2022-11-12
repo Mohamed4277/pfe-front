@@ -9,8 +9,6 @@ import Login from "./Login";
 const initialState = { cart: {} };
 const mockStore = configureStore();
 
-
-
 describe("Login", () => {
   test("input name", async () => {
     render(
@@ -22,7 +20,7 @@ describe("Login", () => {
 
     );
 
-    screen.getByText("Submit");
+    screen.getByText("Sign in");
     const nameInputEl = screen.getByPlaceholderText("Enter email");
     fireEvent.change(nameInputEl, {
       target: { value: "Client" },
@@ -40,7 +38,7 @@ describe("Login", () => {
      </Provider>
     );
 
-    screen.getByText("Submit");
+    screen.getByText("Sign up");
     const nameInputEl = screen.getByPlaceholderText("Enter password");
     fireEvent.change(nameInputEl, {
       target: { value: "Client" },
