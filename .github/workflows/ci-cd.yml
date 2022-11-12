@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -26,5 +25,15 @@ jobs:
       uses: codecov/codecov-action@v1
 
   build:
-    - name: Build
-      run: npm run build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: docker login
+        env:
+          PASSWORD: ${{ secrets.PASSWORD }}
+          USER: ${{ secrets.USER }}
+        run: docker login -u $USER -p $PASSWORD
+      - name: Build the Docker image
+        run: docker build -t 77871417/react-pfe .
+      - name: Push the Docker image
+        run: docker push 77871417/react-pfe:latest
