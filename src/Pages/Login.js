@@ -38,7 +38,6 @@ function Login() {
         });
         const {id,lastName, name,username,roles} = await responseUserInformation.json();
         dispatch({type: "IS_CONNECTED", payload:{isConnected:true,id,lastName, name, username, roles}})
-        console.log('***************** ', {id,lastName, name,username,roles} )
         navigate("/home");
       } catch (error) {
         setIsConnected(true)

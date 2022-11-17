@@ -19,6 +19,7 @@ import Adresses from "./Components/Adresses";
 import PersonInformation from "./Components/PersonInformation";
 import AdressForm from "./Components/AdressForm";
 import PaymentModeForm from "./Components/PaymentModeForm";
+import Product from "./Pages/Product";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/home" element={<Home />}></Route>
           <Route path="/my-account" element={<MyAcount />}></Route>
           <Route path="/ordered" element={<Ordered />}></Route>
+          <Route path="/product/:idProduct" element={<Product />}></Route>
           <Route path="/order" element={<Order />}></Route>
           <Route path="/wishlist" element={<WishList />}></Route>
           <Route path="/adress" element={<Adresses />} exact></Route>

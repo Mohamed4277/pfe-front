@@ -72,7 +72,7 @@ function NavBar() {
           <a className="navbar-brand" href="/home" >
             <h3>MyBookStore.</h3>
           </a>
-            <button  OnClick={()=>setIsExpandNav(!isExpandNav)} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+            <button  onClick={()=>setIsExpandNav(!isExpandNav)} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
             aria-controls="navbarNav" aria-expanded={isExpandNav?"true":"false"} aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

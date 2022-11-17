@@ -19,7 +19,6 @@ function WishList() {
           },
         });
         const json = await response.json();
-        console.log("ggggggggggggggghghhghgh : ", json.whishList.product)
         dispatch({type:"GET_WISH_LIST", payload:json.whishList.product})
       } catch (error) {
         console.log("error", error);
