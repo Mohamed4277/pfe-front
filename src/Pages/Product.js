@@ -3,11 +3,24 @@ import { Heart } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
+  //Get Image from folder
+  function importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => {
+      images[item.replace("./", "")] = r(item);
+    });
+    return images;
+  }
+
 function Product(){
   const params = useParams();
   const [product, setProduct] = useState({});
   const dispatch = useDispatch();
   const [isWishList,setIsWishList] = useState(false);
+
+  const images = importAll(
+    require.context("../Images", false, /\.(png|jpe?g|svg)$/)
+  );
 
   useEffect(() => {
     const url = "http://localhost:8080/api/product/" + params.idProduct;
@@ -63,7 +76,7 @@ function Product(){
        <div className="col-4">
         <div className="row">
         <img
-                      src="https://servimg.eyrolles.com/static/media/0188/9782416000188_internet_b200x200.jpg"
+                      src={images[product.image]}
                       width={280}
 
                     />

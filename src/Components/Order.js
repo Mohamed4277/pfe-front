@@ -126,7 +126,6 @@ function Order() {
           },
         });
         const json = await response.json();
-        console.log("tttttttttttttttt: ",json )
         setMyOrders(json.flatMap(num => num))
       } catch (error) {
         console.log("error", error);

@@ -2,15 +2,30 @@ import React from "react";
 import { Heart } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 
+  //Get Image from folder
+  function importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => {
+      images[item.replace("./", "")] = r(item);
+    });
+    return images;
+  }
+
+
+
+
 function Card({product,cart,addItem,removeItem,updateItem,addToWishList}){
 const navigate=useNavigate();
+const images = importAll(
+  require.context("../Images", false, /\.(png|jpe?g|svg)$/)
+);
 return <>
             <div className="container">
               <div class="card mt-3 border-start-0 border-top-0 border-end-0 border-bottom-3 rounded-0">
                 <div class="row no-gutters">
                   <div class="col-md-2">
                     <img
-                      src="https://servimg.eyrolles.com/static/media/0188/9782416000188_internet_b200x200.jpg"
+                      src={images[product.image]}
                       width={150}
                       onClick={()=>{navigate("/product/" + product.id)}}
                     />
