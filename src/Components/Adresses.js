@@ -57,24 +57,24 @@ function Adresses() {
 
   return (
     <>
-      <div class="container">
+      <div className="container">
       <div className="row text-center mb-5">
           <h4>Adresses</h4>
         </div>
-        <div class="row">
-          <div class="col-12">
+        <div className="row">
+          <div className="col-12">
           <Link to={"/adressForm"}>          
-            <button class="col-2 btn btn-primary btn-lg rounded-0 mb-3">
+            <button className="col-2 btn btn-primary btn-lg rounded-0 mb-3">
               Ajouter une adresse
             </button>
           </Link>
             {adress && adress.map((adress) => (
               <>
-                <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
-                  <div class="card-body">
+                <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
+                  <div className="card-body">
                     <div className="row">
                         <div className="col-6">                    
-                          <h6 class="mb-6">
+                          <h6 className="mb-6">
                           {adress.isInvoiceAdress
                             ? "Adresse de livraison"
                             : "Adresse"}
@@ -89,7 +89,7 @@ function Adresses() {
                       </button>
                    </div>
                   </div>
-                    <div class="text-muted">
+                    <div className="text-muted">
                       <div>
                         {adress.nameAdress} {adress.lastNameAdress}
                       </div>

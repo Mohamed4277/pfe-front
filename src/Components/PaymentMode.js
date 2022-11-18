@@ -55,24 +55,24 @@ function PaymentMode() {
   
   return (
     <>
-      <div class="container">
+      <div className="container">
         <div className="row text-center mb-5">
           <h4>Mode de payements</h4>
         </div>
-        <div class="row">
-          <div class="col-12">
+        <div className="row">
+          <div className="col-12">
           <Link to={"/payment-mode-form"}>          
-            <button class="col-2 btn btn-primary btn-lg rounded-0 mb-3">
+            <button className="col-2 btn btn-primary btn-lg rounded-0 mb-3">
               Ajouter une carte
             </button>
           </Link>
             {paymentMode && paymentMode.map((card) => (
               <>
-                <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
-                  <div class="card-body ">
+                <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
+                  <div className="card-body ">
                   <div className="row">
                         <div className="col-6">                    
-                          <h6 class="mb-6">
+                          <h6 className="mb-6">
                           {card.name}
                           </h6>
                         </div>
@@ -85,7 +85,7 @@ function PaymentMode() {
                       </button>
                       </div>
                    </div>
-                    <div class="text-muted">
+                    <div className="text-muted">
                       <div>{card.cardType}</div>
                       <div>{card.cardNumber}</div>
                       <div>{card.codeSecret}</div>

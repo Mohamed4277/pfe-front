@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react';
 import { useDispatch } from "react-redux";
 import Card from "./Card"
 import { useSelector } from "react-redux";
-import { Postage } from 'react-bootstrap-icons';
+
 
 function Products() {
   const dispatch = useDispatch();
   const {product:listProduct}= useSelector((state)=>state)
   const [productToAdd, setProductToAdd]=useState({})
+  const [isAdd, setIsAdd]=useState(false)
   useEffect(() => {
     const {user}= JSON.parse(localStorage.getItem("persist:root"));
     const username=JSON.parse(user).username;
@@ -32,7 +33,7 @@ function Products() {
       }
     });
 
-    productToAdd && fetchData();
+    isAdd && productToAdd && fetchData();
   }, [productToAdd]);
 
   return (
@@ -46,7 +47,7 @@ function Products() {
                 type: "ADD_ITEM_IN_BASKET",
                 payload: { ...product, quantity: 1 },
               })}
-              addToWishList={()=>{setProductToAdd(product)}}
+              addToWishList={()=>{setIsAdd(true);setProductToAdd(product)}}
               />
           );
         })}

@@ -33,14 +33,14 @@ function Home() {
   return (
     <>
       <form
-        class="container search-bar-margin"
+        className="container search-bar-margin"
         onSubmit={(event) => {
           event.preventDefault();
           setValueToSearch(event.target.searchValue.value);
         }}
       >
         <div className="row">
-          <div class="col-8">
+          <div className="col-8">
             <input
               type="text"
               className="form-control mt-1 rounded-0"
@@ -49,8 +49,8 @@ function Home() {
               name="searchValue"
             />
           </div>
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-lg rounded-0">
+          <div className="col-4">
+            <button type="submit" className="btn btn-primary btn-lg rounded-0">
               Rechercher
             </button>
           </div>

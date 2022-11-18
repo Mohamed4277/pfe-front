@@ -151,19 +151,19 @@ function Order() {
         </div>
         <div className="row rounded-0">
           <div className="col-12 rounded-0">
-          <div class="accordion border-0 rounded-0" id="accordionPanelsStayOpenExample">         
+          <div className="accordion border-0 rounded-0" id="accordionPanelsStayOpenExample">         
             {order && Object.keys(order).length >0 && Object.keys(order).map(ord =>
               <>              
- <div class="accordion accordion-flush" id="accordionFlushExample" onClick={()=>setIsExpand(!isExpand)}>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="flush-headingOne">
-      <button class={isExpand?"accordion-button":"accordion-button collapsed"} type="button" 
+ <div className="accordion accordion-flush" id="accordionFlushExample" onClick={()=>setIsExpand(!isExpand)}>
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="flush-headingOne">
+      <button className={isExpand?"accordion-button":"accordion-button collapsed"} type="button" 
        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded={isExpand?true:"false"} aria-controls="flush-collapseOne">
         #Order {ord}
       </button>
     </h2>
-    <div id="flush-collapseOne" class={isExpand?"accordion-collapse collapse show":"accordion-collapse collapse"} aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">
+    <div id="flush-collapseOne" className={isExpand?"accordion-collapse collapse show":"accordion-collapse collapse"} aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div className="accordion-body">
 	  
 	                      {order[ord].map(book=>
                       <>

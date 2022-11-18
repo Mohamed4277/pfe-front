@@ -21,30 +21,31 @@ const images = importAll(
 );
 return <>
             <div className="container">
-              <div class="card mt-3 border-start-0 border-top-0 border-end-0 border-bottom-3 rounded-0">
-                <div class="row no-gutters">
-                  <div class="col-md-2">
+              <div className="card mt-3 border-start-0 border-top-0 border-end-0 border-bottom-3 rounded-0">
+                <div className="row no-gutters">
+                  <div className="col-md-2">
                     <img
                       src={images[product.image]}
                       width={150}
                       onClick={()=>{navigate("/product/" + product.id)}}
                     />
                   </div>
-                  <div class="col-md-10 ps-3 pt-3 pb-3">
-                      <h5 class="card-title">{product.name}</h5>
-                      <div class="card-text">{product.description}</div>
-                      <p class="card-text">
+                  <div className="col-md-10 ps-3 pt-3 pb-3">
+                      <h5 className="card-title">{product.name}</h5>
+                      <div className="card-text">{product.description}</div>
+                      <p className="card-text">
                         <p>{product.price} €</p>
                         {addItem && <><button
+                          id="add-item"
                           type="button"
-                          class="btn btn-lg btn-primary rounded-0"
+                          className="btn btn-lg btn-primary rounded-0"
                           onClick={addItem}
                         >
                           Ajouter au panier
                         </button>
                         {addToWishList && <button
                           type="button"
-                          class="btn btn-lg ms-3 rounded-0 btn btn-outline-secondary"
+                          className="btn btn-lg ms-3 rounded-0 btn btn-outline-secondary"
                           onClick={addToWishList}
                         >
                         <Heart size={20} />

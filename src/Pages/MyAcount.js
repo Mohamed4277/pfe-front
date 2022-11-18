@@ -22,10 +22,10 @@ function MyAcount() {
         </div>
         <div className="row">
           <div className="col-12 col-md-3">
-            <ul class="nav flex-column">
-              <li class="nav-item">
+            <ul className="nav flex-column">
+              <li className="nav-item">
                 <a
-                  class="nav-link active"
+                  className="nav-link active"
                   onClick={() => {
                     setIsInformationDisplay(false);
                     setIsAdressDisplay(false);
@@ -38,9 +38,9 @@ function MyAcount() {
                   Commandes
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   onClick={() => {
                     setIsInformationDisplay(false);
                     setIsAdressDisplay(false);
@@ -53,9 +53,9 @@ function MyAcount() {
                   Liste de souhaits
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   onClick={() => {
                     setIsInformationDisplay(true);
                     setIsAdressDisplay(false);
@@ -68,9 +68,9 @@ function MyAcount() {
                   Information personnelle
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   onClick={() => {
                     setIsInformationDisplay(false);
                     setIsAdressDisplay(true);
@@ -83,9 +83,9 @@ function MyAcount() {
                   Adresses
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a
-                  class="nav-link"
+                  className="nav-link"
                   onClick={() => {
                     setIsInformationDisplay(false);
                     setIsAdressDisplay(false);

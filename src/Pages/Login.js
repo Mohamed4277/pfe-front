@@ -89,7 +89,7 @@ function Login() {
             {isConnected && <div className="form-group mt-3 password-incorrect">"Email ou mot de passe incorrect"</div>}
             <div className="row">            
               <div className="d-grid gap-2 mt-3 col-md-6">
-                <button type="submit" className="btn btn-primary rounded-0">
+                <button id="submit-to-enter" type="submit" className="btn btn-primary rounded-0">
                   Sign in
                 </button>
               </div>

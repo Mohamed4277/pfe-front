@@ -81,7 +81,7 @@ function PaymentValidate() {
                 .then((response) => {
                   dispatch({type:"REMOVE_CART"})
                   navigate("/ordered")
-                  return response.json();
+                  //return response.json();
                 })
                 .then((res) => {
                 });
@@ -101,9 +101,9 @@ function PaymentValidate() {
   
     return (
         <>
-          <div class="container">
+          <div className="container">
           <div className="row mb-5">
-          <div class="col-12">
+          <div className="col-12">
           {cart.length > 0 && <div className="order-pay row mb-5">
         <h5 className="col align-self-center total-purchase purchase">
           Total des achats: {total} €
@@ -111,6 +111,7 @@ function PaymentValidate() {
         <div className="col align-self-center button-order purchase text-end">
           <button
             type="button"
+            id="validate"
             className="btn btn-dark btn-lg button-margin rounded-0"
             onClick={() => {
               setIsOrdered(true)
@@ -122,16 +123,16 @@ function PaymentValidate() {
       </div>}  
           </div>
           </div>
-            <div class="row">
-              <div class="col-12">
+            <div className="row">
+              <div className="col-12">
                 {adress && adress.map((adress) => ( adress.isInvoiceAdress === true || 
                  adress.isDeliveryAdress === true &&
                   <>
-                    <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
-                      <div class="card-body">
+                    <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
+                      <div className="card-body">
                         <div className="row">
                             <div className="col-6">                    
-                              <h6 class="mb-6">
+                              <h6 className="mb-6">
                               {adress.isInvoiceAdress
                                 ? "Adresse de livraison"
                                 : "Adresse"}
@@ -143,7 +144,7 @@ function PaymentValidate() {
                           </button>
                        </div>
                       </div>
-                        <div class="text-muted">
+                        <div className="text-muted">
                           <div>
                             {adress.nameAdress} {adress.lastNameAdress}
                           </div>
@@ -158,15 +159,15 @@ function PaymentValidate() {
                   </>
                 ))}
                 {
-                          <div class="row">
-                          <div class="col-12">
+                          <div className="row">
+                          <div className="col-12">
                             {paymentMode && paymentMode.map((card) => ( card.isCreditCardToUse &&
                               <>
-                                <div class="card card-lg bg-light mb-8 rounded-0 mb-3">
-                                  <div class="card-body ">
+                                <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
+                                  <div className="card-body ">
                                   <div className="row">
                                         <div className="col-6">                    
-                                          <h6 class="mb-6">
+                                          <h6 className="mb-6">
                                           {card.name}
                                           </h6>
                                         </div>
@@ -176,7 +177,7 @@ function PaymentValidate() {
                                       </button>
                                       </div>
                                    </div>
-                                    <div class="text-muted">
+                                    <div className="text-muted">
                                       <div>{card.cardType}</div>
                                       <div>{card.cardNumber}</div>
                                       <div>{card.codeSecret}</div>

@@ -9,6 +9,7 @@ function AdressForm() {
   const [adressPartTwo, setAdressPartTwo] = useState("");
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
+  const [adressOption, setAdressOption]=useState();
   const [isSubmit,setIsSubmit]=useState(false);
   const params = useParams();
   const [adress,setAdress]=useState({})
@@ -59,14 +60,18 @@ function AdressForm() {
             adressPartOne,
             adressPartTwo,
             zip,
-            city
+            city,
+            isDeliveryAdress:adressOption === "1"? true: false,
+            isInvoiceAdress:adressOption === "0"? true: false
           }):JSON.stringify({
             nameAdress,
             lastNameAdress,
             adressPartOne,
             adressPartTwo,
             zip,
-            city
+            city,
+            isDeliveryAdress:adressOption === "1"? true: false,
+            isInvoiceAdress:adressOption === "0"? true: false
           })
         });
         const json = await response.json();
@@ -89,6 +94,7 @@ function AdressForm() {
     setZip(event.target.zip.value);
     setlastName(event.target.lastNameAdress.value);
     setName(event.target.nameAdress.value);
+    setAdressOption(event.target.adressOption.value)
     setIsSubmit(true)
   }
   return (
@@ -175,6 +181,11 @@ function AdressForm() {
           />
         </div>
       </div>
+      <select  id="adressOption" name="adressOption" className="form-select rounded-0 col-3">
+            <option selected >Selectionner une option</option>
+            <option value="1">Adresse livraison</option>
+            <option value="0">Adresse facturation</option>
+          </select>
       <div className="form-group">
         <button type="submit" className="btn btn-lg btn-primary rounded-0">
           Soumettre

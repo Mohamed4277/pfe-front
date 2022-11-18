@@ -9,6 +9,7 @@ function PaymentModeForm(props) {
   const [cardType,setCardType]=useState("");
   const [cardNumber,setCardNumber]=useState("");
   const [codeSecret, setCodeSecret]=useState("");
+  const [carteOption, setCarteOption]=useState();
   const [isSubmit,setIsSubmit]=useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -55,12 +56,14 @@ function PaymentModeForm(props) {
             name,
             cardType,
             cardNumber,
-            codeSecret
+            codeSecret,
+            isCreditCardToUse: carteOption === "1"?true:false
           }):JSON.stringify({
             name,
             cardType,
             cardNumber,
-            codeSecret
+            codeSecret,
+            isCreditCardToUse: carteOption === "1"?true:false
           })
         });
         const json = await response.json();
@@ -80,6 +83,7 @@ function PaymentModeForm(props) {
     setCardNumber(event.target.cardNumber.value);
     setCardType(event.target.cardType.value);
     setName(event.target.name.value);
+    setCarteOption(event.target.carteOption.value)
     setIsSubmit(true)
   }
   return (
@@ -140,7 +144,14 @@ function PaymentModeForm(props) {
               required
               defaultValue={params.idPaymentMode && paymentMode && paymentMode.codeSecret}
             />
-          </div>         
+          </div>  
+          <div>
+          <select  id="carteOption" name="carteOption" className="form-select rounded-0 col-3">
+            <option selected >Selectionner une option</option>
+            <option value="1">Principal carte</option>
+            <option value="0">Carte secondaire</option>
+          </select>
+          </div>       
             <button  type="submit" class="col-12 btn btn-primary btn-lg rounded-0">
               Soumettre
             </button>

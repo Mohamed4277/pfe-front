@@ -25,6 +25,7 @@ function Cart() {
         <div className="col align-self-center button-order purchase text-end">
           <button
             type="button"
+            id="order"
             className="btn btn-dark btn-lg button-margin rounded-0"
             onClick={() => {
               navigate("/payment-validate")

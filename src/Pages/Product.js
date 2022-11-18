@@ -84,7 +84,7 @@ function Product(){
         <div className="col-10">
         <button
                           type="button"
-                          class="col-12 btn mt-4 mb-4 btn-lg btn-primary rounded-0"
+                          className="col-12 btn mt-4 mb-4 btn-lg btn-primary rounded-0"
                           onClick={()=> dispatch({
                             type: "ADD_ITEM_IN_BASKET",
                             payload: { ...product, quantity: 1 },
@@ -96,7 +96,7 @@ function Product(){
         <div className="col-2">
             <button
                             type="button"
-                            class="btn mt-4 mb-4 btn-lg rounded-0 btn btn-outline-secondary"
+                            className="btn mt-4 mb-4 btn-lg rounded-0 btn btn-outline-secondary"
                             onClick={()=>setIsWishList(true)}
                             >
                             <Heart size={20} />
