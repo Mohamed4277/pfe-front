@@ -20,6 +20,7 @@ import PersonInformation from "./Components/PersonInformation";
 import AdressForm from "./Components/AdressForm";
 import PaymentModeForm from "./Components/PaymentModeForm";
 import Product from "./Pages/Product";
+import AdminProducts from "./Pages/AdminProducts"
 
 
 function App() {
@@ -49,7 +50,8 @@ function App() {
           <Route path="/payment-validate" element = {<PaymentValidate/>}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Route>}
-        {!user.isConnected &&<Route path="*" element={<Login />}></Route>}
+        {!user.isConnected && <Route path="*" element={<Login />}></Route>}
+        {  user.isConnected && user.roles.some(role=>role.name=="ROLE_ADMIN") && <Route path="/admin/products" element={<AdminProducts/>}></Route> }
       </Routes>
     </>
   );

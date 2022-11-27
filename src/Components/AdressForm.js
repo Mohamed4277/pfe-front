@@ -9,7 +9,8 @@ function AdressForm() {
   const [adressPartTwo, setAdressPartTwo] = useState("");
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
-  const [adressOption, setAdressOption]=useState();
+  const [adressOptionDeliveryAdress, setAdressOptionDeliveryAdress]=useState();
+  const [adressOptionInvoiceAdress, setAdressOptionInvoiceAdress]=useState();
   const [isSubmit,setIsSubmit]=useState(false);
   const params = useParams();
   const [adress,setAdress]=useState({})
@@ -61,8 +62,8 @@ function AdressForm() {
             adressPartTwo,
             zip,
             city,
-            isDeliveryAdress:adressOption === "1"? true: false,
-            isInvoiceAdress:adressOption === "0"? true: false
+            isDeliveryAdress:adressOptionDeliveryAdress === "1"? true: false,
+            isInvoiceAdress:adressOptionInvoiceAdress === "1"? true: false
           }):JSON.stringify({
             nameAdress,
             lastNameAdress,
@@ -70,8 +71,8 @@ function AdressForm() {
             adressPartTwo,
             zip,
             city,
-            isDeliveryAdress:adressOption === "1"? true: false,
-            isInvoiceAdress:adressOption === "0"? true: false
+            isDeliveryAdress:adressOptionDeliveryAdress === "1"? true: false,
+            isInvoiceAdress:adressOptionInvoiceAdress === "1"? true: false
           })
         });
         const json = await response.json();
@@ -94,7 +95,9 @@ function AdressForm() {
     setZip(event.target.zip.value);
     setlastName(event.target.lastNameAdress.value);
     setName(event.target.nameAdress.value);
-    setAdressOption(event.target.adressOption.value)
+    setAdressOptionDeliveryAdress(event.target.adressOptionDeliveryAdress.value);
+    setAdressOptionInvoiceAdress(event.target.adressOptionInvoiceAdress.value)
+    console.log(".............", {x:event.target.adressOptionDeliveryAdress.value,y:event.target.adressOptionInvoiceAdress.value  })
     setIsSubmit(true)
   }
   return (
@@ -181,11 +184,15 @@ function AdressForm() {
           />
         </div>
       </div>
-      <select  id="adressOption" name="adressOption" className="form-select rounded-0 col-3">
-            <option selected >Selectionner une option</option>
-            <option value="1">Adresse livraison</option>
-            <option value="0">Adresse facturation</option>
-          </select>
+
+      <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="adressOptionDeliveryAdress" name="adressOptionDeliveryAdress" value="1"/>
+      <label class="form-check-label" for="inlineCheckbox1">Adresse livraison</label>
+     </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="adressOptionInvoiceAdress" name="adressOptionInvoiceAdress" value="1"/>
+      <label class="form-check-label" for="inlineCheckbox2">Adresse facturation</label>
+    </div>
       <div className="form-group">
         <button type="submit" className="btn btn-lg btn-primary rounded-0">
           Soumettre

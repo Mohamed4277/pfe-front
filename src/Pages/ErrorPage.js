@@ -8,7 +8,7 @@ function ErrorPage() {
     return (
       <div className="container">
         <h1>
-          Erreur: Page inexistante <code>{location.pathname}</code>
+          Erreur: Page inexistante ou non authorisée <code>{location.pathname}</code>
         </h1>
       </div>
     );

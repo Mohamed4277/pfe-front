@@ -4,7 +4,7 @@ import Card from "./Card"
 import { useSelector } from "react-redux";
 
 
-function Products() {
+function Products(props) {
   const dispatch = useDispatch();
   const {product:listProduct}= useSelector((state)=>state)
   const [productToAdd, setProductToAdd]=useState({})
@@ -42,7 +42,7 @@ function Products() {
         listProduct.length > 0 &&
         listProduct.map((product) => {
           return (
-            <Card  product={product} addItem={() =>
+            <Card isAdmin={props.isAdmin} product={product} addItem={() =>
               dispatch({
                 type: "ADD_ITEM_IN_BASKET",
                 payload: { ...product, quantity: 1 },

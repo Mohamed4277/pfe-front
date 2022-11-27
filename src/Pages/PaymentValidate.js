@@ -92,6 +92,8 @@ function PaymentValidate() {
     }
   }, [isOrdered]);
 
+  console.log('*************99999 ', adress)
+
   const total =
     cart &&
     cart.length > 0 &&
@@ -125,8 +127,41 @@ function PaymentValidate() {
           </div>
             <div className="row">
               <div className="col-12">
-                {adress && adress.map((adress) => ( adress.isInvoiceAdress === true || 
-                 adress.isDeliveryAdress === true &&
+              {
+                          <div className="row">
+                          <div className="col-12">
+                            {paymentMode && paymentMode.map((card) => ( card.isCreditCardToUse &&
+                              <>
+                                <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
+                                  <div className="card-body ">
+                                  <div className="row">
+                                        <div className="col-6">                    
+                                          <h6 className="mb-6">
+                                          Carte de payment - {card.name}
+                                          </h6>
+                                        </div>
+                                      <div className="col-6 text-end">                
+                                      <button className="btn btn-lg  button-margin" >
+                                      <Link to={"/payment-mode-form/"+ card.id}><Pen size={20} /></Link>
+                                      </button>
+                                      </div>
+                                   </div>
+                                    <div className="text-muted">
+                                      <div>{card.cardType}</div>
+                                      <div>{card.cardNumber}</div>
+                                      <div>{card.codeSecret}</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            ))}
+                          </div>
+                        </div>
+                }
+                <div className="row">
+                <div className="col-6">
+                {adress && adress.map((adress) => ( (adress.isInvoiceAdress === true || 
+                 adress.isDeliveryAdress === true) &&
                   <>
                     <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
                       <div className="card-body">
@@ -158,37 +193,45 @@ function PaymentValidate() {
                     </div>
                   </>
                 ))}
-                {
-                          <div className="row">
-                          <div className="col-12">
-                            {paymentMode && paymentMode.map((card) => ( card.isCreditCardToUse &&
-                              <>
-                                <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
-                                  <div className="card-body ">
-                                  <div className="row">
-                                        <div className="col-6">                    
-                                          <h6 className="mb-6">
-                                          {card.name}
-                                          </h6>
-                                        </div>
-                                      <div className="col-6 text-end">                
-                                      <button className="btn btn-lg  button-margin" >
-                                      <Link to={"/payment-mode-form/"+ card.id}><Pen size={20} /></Link>
-                                      </button>
-                                      </div>
-                                   </div>
-                                    <div className="text-muted">
-                                      <div>{card.cardType}</div>
-                                      <div>{card.cardNumber}</div>
-                                      <div>{card.codeSecret}</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </>
-                            ))}
+                </div>
+                         
+                <div className="col-6">
+                {adress && adress.map((adress) => ( (adress.isDeliveryAdress === true || 
+                 adress.isDeliveryAdress === true) &&
+                  <>
+                    <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
+                      <div className="card-body">
+                        <div className="row">
+                            <div className="col-6">                    
+                              <h6 className="mb-6">
+                              {adress.isDeliveryAdress
+                                ? "Adresse de facturation"
+                                : "Adresse"}
+                              </h6>
+                            </div>
+                          <div className="col-6 text-end">                
+                          <button className="btn btn-lg  button-margin" >
+                          <Link className="text-decoration-none" to={"/adress/"+ adress.id}><Pen size={20} /></Link>
+                          </button>
+                       </div>
+                      </div>
+                        <div className="text-muted">
+                          <div>
+                            {adress.nameAdress} {adress.lastNameAdress}
+                          </div>
+                          <div>{adress.adressPartOne}</div>
+                          <div>{adress.adressPartTwo}</div>
+                          <div>
+                            {adress.zip} {adress.city}
                           </div>
                         </div>
-                }
+                      </div>
+                    </div>
+                  </>
+                ))}
+                </div>
+                </div>
+
               </div>
             </div>
           </div>

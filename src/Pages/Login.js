@@ -37,6 +37,7 @@ function Login() {
           },
         });
         const {id,lastName, name,username,roles} = await responseUserInformation.json();
+        console.log('-----------------',{roles,userName} );
         dispatch({type: "IS_CONNECTED", payload:{isConnected:true,id,lastName, name, username, roles}})
         navigate("/home");
       } catch (error) {

@@ -12,9 +12,7 @@ import { useNavigate } from "react-router-dom";
   }
 
 
-
-
-function Card({product,cart,addItem,removeItem,updateItem,addToWishList}){
+function Card({isAdmin,product,cart,addItem,removeItem,updateItem,addToWishList}){
 const navigate=useNavigate();
 const images = importAll(
   require.context("../Images", false, /\.(png|jpe?g|svg)$/)
@@ -35,7 +33,26 @@ return <>
                       <div className="card-text">{product.description}</div>
                       <p className="card-text">
                         <p>{product.price} €</p>
-                        {addItem && <><button
+                        {
+                          isAdmin && <button
+                          id="add-item"
+                          type="button"
+                          className="btn btn-lg me-4 btn-primary rounded-0"
+                        >
+                          Mettre à jour
+                        </button>
+                        }
+                        {
+                          isAdmin && <button
+                          id="add-item"
+                          type="button"
+                          className="btn btn-lg btn-danger rounded-0"
+                        >
+                          Supprimer
+                        </button>
+                        }
+
+                        {!isAdmin && addItem && <><button
                           id="add-item"
                           type="button"
                           className="btn btn-lg btn-primary rounded-0"
@@ -43,7 +60,7 @@ return <>
                         >
                           Ajouter au panier
                         </button>
-                        {addToWishList && <button
+                        {isAdmin && addToWishList && <button
                           type="button"
                           className="btn btn-lg ms-3 rounded-0 btn btn-outline-secondary"
                           onClick={addToWishList}
@@ -51,25 +68,22 @@ return <>
                         <Heart size={20} />
                         </button>}</>}
                         {removeItem && updateItem &&
-
-<>
-<input
-className="form-control width-quantity mb-2 rounded-0"
-id="nbOfProduct"
-name="nbOfProduct"
-defaultValue={cart && cart.length >0 && cart.filter((item=>item.id==product.id))[0].quantity}
-onChange={updateItem}
-/>
-  <button
-    type="button"
-    className="btn btn btn-danger btn-lg button-margin rounded-0"
-    onClick={removeItem}
-  >
-    Supprimer du panier
-  </button>
-  </>
-
-
+                            <>
+                            <input
+                            className="form-control width-quantity mb-2 rounded-0"
+                            id="nbOfProduct"
+                            name="nbOfProduct"
+                            defaultValue={cart && cart.length >0 && cart.filter((item=>item.id==product.id))[0].quantity}
+                            onChange={updateItem}
+                            />
+                              <button
+                                type="button"
+                                className="btn btn btn-danger btn-lg button-margin rounded-0"
+                                onClick={removeItem}
+                              >
+                                Supprimer du panier
+                              </button>
+                              </>
 
                         }
                       </p>
