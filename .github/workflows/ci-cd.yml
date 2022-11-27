@@ -3,9 +3,8 @@ on:
   push:
     branches: [ "main" ]
 
-
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,7 +23,7 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
 
-  build:
+  deploy-on-docker-registry:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
