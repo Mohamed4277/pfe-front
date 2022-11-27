@@ -32,7 +32,7 @@ return <>
                       <h5 className="card-title">{product.name}</h5>
                       <div className="card-text">{product.description}</div>
                       <p className="card-text">
-                        <p>{product.price} €</p>
+                        <p className="price-style pt-2">{product.price} €</p>
                         {
                           isAdmin && <button
                           id="add-item"
@@ -60,7 +60,7 @@ return <>
                         >
                           Ajouter au panier
                         </button>
-                        {isAdmin && addToWishList && <button
+                        {!isAdmin && addToWishList && <button
                           type="button"
                           className="btn btn-lg ms-3 rounded-0 btn btn-outline-secondary"
                           onClick={addToWishList}

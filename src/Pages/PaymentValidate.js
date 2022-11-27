@@ -92,7 +92,11 @@ function PaymentValidate() {
     }
   }, [isOrdered]);
 
-  console.log('*************99999 ', adress)
+  const paymentModeUnique= paymentMode.find((card) => ( card.isCreditCardToUse===true && card));
+  const AdressInvoiceUnique=adress.find((adress) => ( (adress.isInvoiceAdress === true && adress)));
+  const AdressDeliveryUnique=adress.find((adress) => ( (adress.isDeliveryAdress === true && adress)));
+
+  console.log('55555555555555555', paymentModeUnique);
 
   const total =
     cart &&
@@ -130,105 +134,102 @@ function PaymentValidate() {
               {
                           <div className="row">
                           <div className="col-12">
-                            {paymentMode && paymentMode.map((card) => ( card.isCreditCardToUse &&
+                            {paymentModeUnique && 
                               <>
                                 <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
                                   <div className="card-body ">
                                   <div className="row">
                                         <div className="col-6">                    
                                           <h6 className="mb-6">
-                                          Carte de payment - {card.name}
+                                          Carte de payment - {paymentModeUnique.name}
                                           </h6>
                                         </div>
                                       <div className="col-6 text-end">                
                                       <button className="btn btn-lg  button-margin" >
-                                      <Link to={"/payment-mode-form/"+ card.id}><Pen size={20} /></Link>
+                                      <Link to={"/payment-mode-form/"+ paymentModeUnique.id}><Pen size={20} /></Link>
                                       </button>
                                       </div>
                                    </div>
                                     <div className="text-muted">
-                                      <div>{card.cardType}</div>
-                                      <div>{card.cardNumber}</div>
-                                      <div>{card.codeSecret}</div>
+                                      <div>{paymentModeUnique.cardType}</div>
+                                      <div>{paymentModeUnique.cardNumber}</div>
                                     </div>
                                   </div>
                                 </div>
                               </>
-                            ))}
+                           }
                           </div>
                         </div>
                 }
                 <div className="row">
                 <div className="col-6">
-                {adress && adress.map((adress) => ( (adress.isInvoiceAdress === true || 
-                 adress.isDeliveryAdress === true) &&
+                {AdressDeliveryUnique &&
                   <>
                     <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
                       <div className="card-body">
                         <div className="row">
                             <div className="col-6">                    
                               <h6 className="mb-6">
-                              {adress.isInvoiceAdress
+                              {AdressDeliveryUnique.isInvoiceAdress
                                 ? "Adresse de livraison"
                                 : "Adresse"}
                               </h6>
                             </div>
                           <div className="col-6 text-end">                
                           <button className="btn btn-lg  button-margin" >
-                          <Link className="text-decoration-none" to={"/adress/"+ adress.id}><Pen size={20} /></Link>
+                          <Link className="text-decoration-none" to={"/adress/"+ AdressDeliveryUnique.id}><Pen size={20} /></Link>
                           </button>
                        </div>
                       </div>
                         <div className="text-muted">
                           <div>
-                            {adress.nameAdress} {adress.lastNameAdress}
+                            {AdressDeliveryUnique.nameAdress} {AdressDeliveryUnique.lastNameAdress}
                           </div>
-                          <div>{adress.adressPartOne}</div>
-                          <div>{adress.adressPartTwo}</div>
+                          <div>{AdressDeliveryUnique.adressPartOne}</div>
+                          <div>{AdressDeliveryUnique.adressPartTwo}</div>
                           <div>
-                            {adress.zip} {adress.city}
+                            {AdressDeliveryUnique.zip} {AdressDeliveryUnique.city}
                           </div>
                         </div>
                       </div>
                     </div>
                   </>
-                ))}
+                }
                 </div>
                          
                 <div className="col-6">
-                {adress && adress.map((adress) => ( (adress.isDeliveryAdress === true || 
-                 adress.isDeliveryAdress === true) &&
+                {AdressInvoiceUnique && 
                   <>
                     <div className="card card-lg bg-light mb-8 rounded-0 mb-3">
                       <div className="card-body">
                         <div className="row">
                             <div className="col-6">                    
                               <h6 className="mb-6">
-                              {adress.isDeliveryAdress
+                              {AdressInvoiceUnique.isDeliveryAdress
                                 ? "Adresse de facturation"
                                 : "Adresse"}
                               </h6>
                             </div>
                           <div className="col-6 text-end">                
                           <button className="btn btn-lg  button-margin" >
-                          <Link className="text-decoration-none" to={"/adress/"+ adress.id}><Pen size={20} /></Link>
+                          <Link className="text-decoration-none" to={"/adress/"+ AdressInvoiceUnique.id}><Pen size={20} /></Link>
                           </button>
                        </div>
                       </div>
                         <div className="text-muted">
                           <div>
-                            {adress.nameAdress} {adress.lastNameAdress}
+                            {AdressInvoiceUnique.nameAdress} {AdressInvoiceUnique.lastNameAdress}
                           </div>
-                          <div>{adress.adressPartOne}</div>
-                          <div>{adress.adressPartTwo}</div>
+                          <div>{AdressInvoiceUnique.adressPartOne}</div>
+                          <div>{AdressInvoiceUnique.adressPartTwo}</div>
                           <div>
-                            {adress.zip} {adress.city}
+                            {AdressInvoiceUnique.zip} {AdressInvoiceUnique.city}
                           </div>
                         </div>
                       </div>
                     </div>
                   </>
-                ))}
+                }
                 </div>
                 </div>
 

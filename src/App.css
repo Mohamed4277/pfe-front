@@ -90,6 +90,12 @@
     height: 120px;
 }
 
+.price-style {
+  color: orange;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
 .form-group {
   margin-top: 14px;
   margin-bottom: 14px;

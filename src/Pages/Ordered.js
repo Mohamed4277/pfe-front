@@ -12,7 +12,7 @@ function Ordered() {
             <button
               type="button"
               id="return-to-home"
-              className="btn btn-lg btn-success rounded-0"
+              className="btn btn-lg btn-dark rounded-0"
               onClick={() => navigate("/home")}
             >
               Retour à la liste des produits
