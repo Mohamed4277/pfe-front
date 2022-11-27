@@ -17,6 +17,8 @@ function Cart() {
     }, 0);
 
   return (
+    <>
+    <h4 className=" text-center mt-0 mb-5">Panier</h4>
     <div className="container">
       {cart.length > 0 && <div className="order-pay row mb-5">
         <h5 className="col align-self-center total-purchase purchase">
@@ -63,6 +65,7 @@ function Cart() {
         </div>
 
     </div>
+    </>
   );
 }
 

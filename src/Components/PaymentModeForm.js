@@ -145,16 +145,18 @@ function PaymentModeForm(props) {
               defaultValue={params.idPaymentMode && paymentMode && paymentMode.codeSecret}
             />
           </div>  
-          <div>
+          <div className="mb-3 col-6">
           <select  id="carteOption" name="carteOption" className="form-select rounded-0 col-3">
             <option selected >Selectionner une option</option>
-            <option value="1">Principal carte</option>
+            <option value="1">Principale carte</option>
             <option value="0">Carte secondaire</option>
           </select>
-          </div>       
-            <button  type="submit" class="col-12 btn btn-primary btn-lg rounded-0">
+          </div> 
+          <div className="col-12">            
+          <button  type="submit" class="btn btn-primary btn-lg rounded-0">
               Soumettre
             </button>
+          </div>      
         </div>
       </form>
     </div>

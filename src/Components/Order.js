@@ -143,6 +143,7 @@ function Order() {
     return cum;
 
   },{});
+  console.log('7777777777777777777',order);
   return (
     <>
       <div className="container">
@@ -152,7 +153,7 @@ function Order() {
         <div className="row rounded-0">
           <div className="col-12 rounded-0">
           <div className="accordion border-0 rounded-0" id="accordionPanelsStayOpenExample">         
-            {order && Object.keys(order).length >0 && Object.keys(order).map(ord =>
+            {order && Object.keys(order).length >0 && Object.keys(order).sort((a,b)=> b-a).map(ord =>
               <>              
  <div className="accordion accordion-flush" id="accordionFlushExample" onClick={()=>setIsExpand(!isExpand)}>
   <div className="accordion-item">
