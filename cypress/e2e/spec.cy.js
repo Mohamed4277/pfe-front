@@ -1,3 +1,7 @@
+import {slowCypressDown} from 'cypress-slow-down';
+
+slowCypressDown();
+
 describe('empty spec', () => {
   it('passes', () => {
     cy.visit('http://localhost:3000')
