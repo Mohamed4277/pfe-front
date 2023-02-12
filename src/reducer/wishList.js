@@ -8,6 +8,8 @@ const wishList = (wishList =wishListInitial  , action) => {
             {console.log("dddddddddddddd: ", wishList); return action.payload}
          case "ADD_PRODUCT_TO_WISH_LIST":
               return [...wishList.filter(product=>product.id != action.payload.id), action.payload]
+         case "REMOVE_WISH_LIST":
+             return []
         default:
           return wishList;
         }

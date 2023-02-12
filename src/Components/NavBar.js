@@ -121,6 +121,7 @@ function NavBar() {
                     window.localStorage.clear();
                     dispatch({type:"IS_CONNECTED", payload:{isConnected:false}})
                     dispatch({type:"REMOVE_CART"})
+                    dispatch({type:"REMOVE_WISH_LIST"})
                     /*dispatch({type: "USER_LOGOUT"})*/
                     /*persistor.purge()*/
                     navigate("/")

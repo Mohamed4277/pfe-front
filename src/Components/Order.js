@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import data from '../Data'
 import Card from '../Components/Card'
-
-
 
 function Order() {
   const [myOrders, setMyOrders] = useState([])
@@ -84,7 +81,7 @@ function Order() {
                                 aria-expanded={isExpand && idExpand === ord ? true : 'false'}
                                 aria-controls="flush-collapseOne"
                               >
-                                #Order {i}
+                                #Order {Object.keys(order).length-i+1}
                               </button>
                             </h2>
                             <div
