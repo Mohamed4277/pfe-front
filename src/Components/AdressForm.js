@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams,useNavigate, useLocation  } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function AdressForm() {
+function AdressForm(props) {
   const [nameAdress, setName] = useState("");
   const [lastNameAdress, setlastName] = useState("");
   const [adressPartOne, setAdressPartOne] = useState("");
@@ -16,6 +16,7 @@ function AdressForm() {
   const [adress,setAdress]=useState({})
   const navigate = useNavigate();
   const dispatch=useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     const url =params.idAdress && "http://localhost:8080/api/adress/" + params.idAdress;
@@ -37,6 +38,8 @@ function AdressForm() {
 
     params.idAdress && fetchData();
   }, []);
+
+
 
 
   useEffect(() => {
@@ -77,7 +80,7 @@ function AdressForm() {
         });
         const json = await response.json();
         dispatch({type:"DISPLAY_ADRESS", payload:{adress:json}})
-        navigate("/adress")
+       navigate(-1)
       } catch (error) {
         console.log("error", error);
       }
@@ -85,7 +88,6 @@ function AdressForm() {
 
     isSubmit && fetchData();
   }, [isSubmit]);
-
   
   const handlesubmit = (event) => {
     event.preventDefault();
@@ -97,7 +99,6 @@ function AdressForm() {
     setName(event.target.nameAdress.value);
     setAdressOptionDeliveryAdress(event.target.adressOptionDeliveryAdress.value);
     setAdressOptionInvoiceAdress(event.target.adressOptionInvoiceAdress.value)
-    console.log(".............", {x:event.target.adressOptionDeliveryAdress.value,y:event.target.adressOptionInvoiceAdress.value  })
     setIsSubmit(true)
   }
   return (
@@ -194,7 +195,7 @@ function AdressForm() {
       <label class="form-check-label" for="inlineCheckbox2">Adresse facturation</label>
     </div>
       <div className="form-group">
-        <button type="submit" className="btn btn-lg btn-primary rounded-0">
+        <button  type="submit" className="btn btn-lg btn-primary rounded-0">
           Soumettre
         </button>
       </div>

@@ -46,7 +46,6 @@ function Adresses() {
           },
           method: "DELETE",
         });
-        //const json = await response.json();
         dispatch({type:"DELETE_ADRESS", payload:{id:idToDelete}})
       } catch (error) {
         console.log("error", error);

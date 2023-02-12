@@ -1,191 +1,120 @@
-import React, { useEffect, useState } from "react";
-import data from "../Data";
-import Card from "../Components/Card"
+import React, { useEffect, useState } from 'react'
+import data from '../Data'
+import Card from '../Components/Card'
 
-/*const json_2=[
-  [
-      {
-          "id": {
-              "orderId": 1,
-              "productId": 1
-          },
-          "order": {
-              "id": 1
-          },
-          "product": {
-              "id": 1,
-              "name": "ddd",
-              "description": "ddd",
-              "autor": "ddd",
-              "edition": "ddd",
-              "date": null,
-              "price": 15.0,
-              "image": "dddd"
-          },
-          "quantity": 1
-      },
-      {
-          "id": {
-              "orderId": 1,
-              "productId": 2
-          },
-          "order": {
-              "id": 1
-          },
-          "product": {
-              "id": 2,
-              "name": "fff",
-              "description": "fff",
-              "autor": "fff",
-              "edition": "fff",
-              "date": null,
-              "price": 10.0,
-              "image": "fff"
-          },
-          "quantity": 1
-      },
-      {
-          "id": {
-              "orderId": 1,
-              "productId": 3
-          },
-          "order": {
-              "id": 1
-          },
-          "product": {
-              "id": 3,
-              "name": "eee",
-              "description": "eee",
-              "autor": "eee",
-              "edition": "eee",
-              "date": null,
-              "price": 5.0,
-              "image": "eee"
-          },
-          "quantity": 1
-      }
-  ],
-  [
-      {
-          "id": {
-              "orderId": 2,
-              "productId": 1
-          },
-          "order": {
-              "id": 2
-          },
-          "product": {
-              "id": 1,
-              "name": "ddd",
-              "description": "ddd",
-              "autor": "ddd",
-              "edition": "ddd",
-              "date": null,
-              "price": 15.0,
-              "image": "dddd"
-          },
-          "quantity": 1
-      },
-      {
-          "id": {
-              "orderId": 2,
-              "productId": 2
-          },
-          "order": {
-              "id": 2
-          },
-          "product": {
-              "id": 2,
-              "name": "fff",
-              "description": "fff",
-              "autor": "fff",
-              "edition": "fff",
-              "date": null,
-              "price": 10.0,
-              "image": "fff"
-          },
-          "quantity": 1
-      }
-  ]
-]*/
+
 
 function Order() {
-  const [myOrders, setMyOrders] = useState([]);
-  const [isExpand, setIsExpand] = useState(false);
+  const [myOrders, setMyOrders] = useState([])
+  const [isExpand, setIsExpand] = useState(false)
+  const [idExpand, setIdExpand] = useState();
   useEffect(() => {
-    const {user}= JSON.parse(localStorage.getItem("persist:root"));
-    const userId=JSON.parse(user).id;
-    const url = "http://localhost:8080/api/user/" + userId + "/orders";
-    const token = localStorage.getItem("access_token");
+    const { user } = JSON.parse(localStorage.getItem('persist:root'))
+    const userId = JSON.parse(user).id
+    const url = 'http://localhost:8080/api/user/' + userId + '/orders'
+    const token = localStorage.getItem('access_token')
     const fetchData = async () => {
       try {
         const response = await fetch(url, {
           headers: {
             Authorization: `Bearer ${token}`,
-            "content-Type": "application/json",
+            'content-Type': 'application/json',
           },
-        });
-        const json = await response.json();
-        setMyOrders(json.flatMap(num => num))
+        })
+        const json = await response.json()
+        setMyOrders(json.flatMap((num) => num))
       } catch (error) {
-        console.log("error", error);
+        console.log('error', error)
       }
-    };
-
-    fetchData();
-  }, []);
-
-  const order=myOrders && myOrders.reduce((cum,ord)=>{
-    if (!cum[ord.order.id]) {
-      cum[ord.order.id] = [];
     }
-    cum[ord.order.id].push({...ord.product,quantity:ord.quantity});
-    return cum;
 
-  },{});
-  console.log('7777777777777777777',order);
+    fetchData()
+  }, [])
+  let i = 0
+
+  const order =
+    myOrders &&
+    myOrders.reduce((cum, ord) => {
+      if (!cum[ord.order.id]) {
+        cum[ord.order.id] = []
+      }
+      cum[ord.order.id].push({ ...ord.product, quantity: ord.quantity })
+      return cum
+    }, {})
+  console.log('order', order)
   return (
     <>
       <div className="container">
-      <div className="row text-center mb-5">
+        <div className="row text-center mb-5">
           <h4>Commandes</h4>
         </div>
         <div className="row rounded-0">
           <div className="col-12 rounded-0">
-          <div className="accordion border-0 rounded-0" id="accordionPanelsStayOpenExample">         
-            {order && Object.keys(order).length >0 && Object.keys(order).sort((a,b)=> b-a).map(ord =>
-              <>              
- <div className="accordion accordion-flush" id="accordionFlushExample" onClick={()=>setIsExpand(!isExpand)}>
-  <div className="accordion-item">
-    <h2 className="accordion-header" id="flush-headingOne">
-      <button className={isExpand?"accordion-button":"accordion-button collapsed"} type="button" 
-       data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded={isExpand?true:"false"} aria-controls="flush-collapseOne">
-        #Order {ord}
-      </button>
-    </h2>
-    <div id="flush-collapseOne" className={isExpand?"accordion-collapse collapse show":"accordion-collapse collapse"} aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div className="accordion-body">
-	  
-	                      {order[ord].map(book=>
+            <div
+              className="accordion border-0 rounded-0"
+              id="accordionPanelsStayOpenExample"
+            >
+              {order &&
+                Object.keys(order).length > 0 &&
+                Object.keys(order)
+                  .sort((a, b) => b - a)
+                  .map((ord) => {
+                    i = i + 1
+                    return (
                       <>
-                      
-                      <Card product={book}/>
-                      
+                        <div
+                          className="accordion accordion-flush"
+                          id="accordionFlushExample"
+                          onClick={() => {setIsExpand(!isExpand); setIdExpand(ord)}}
+                        >
+                          <div className="accordion-item">
+                            <h2
+                              className="accordion-header"
+                              id="flush-headingOne"
+                            >
+                              <button
+                                className={
+                                  isExpand && idExpand === ord
+                                    ? 'accordion-button'
+                                    : 'accordion-button collapsed'
+                                }
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseOne"
+                                aria-expanded={isExpand && idExpand === ord ? true : 'false'}
+                                aria-controls="flush-collapseOne"
+                              >
+                                #Order {i}
+                              </button>
+                            </h2>
+                            <div
+                              id="flush-collapseOne"
+                              className={
+                                isExpand && idExpand === ord
+                                  ? 'accordion-collapse collapse show'
+                                  : 'accordion-collapse collapse'
+                              }
+                              aria-labelledby="flush-headingOne"
+                              data-bs-parent="#accordionFlushExample"
+                            >
+                              <div className="accordion-body">
+                                {order[ord].map((book) => (
+                                  <>
+                                    <Card product={book} />
+                                  </>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </>
-                      )}  
-	  
-	  
-	  </div>
-    </div>
-  </div>
-</div>
-             </>
-            )}
+                    )
+                  })}
             </div>
           </div>
         </div>
       </div>
     </>
-  );
-  }
-export default Order;
+  )
+}
+export default Order

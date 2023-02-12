@@ -68,7 +68,7 @@ function PaymentModeForm(props) {
         });
         const json = await response.json();
         dispatch({type:"DISPLAY_PAYMENT_MODE", payload:{paymentMode:json}})
-        navigate("/payment-mode")
+        navigate(-1)
       } catch (error) {
         console.log("error", error);
       }
