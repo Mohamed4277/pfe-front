@@ -21,14 +21,14 @@ return <>
             <div className="container">
               <div className="card mt-3 border-start-0 border-top-0 border-end-0 border-bottom-3 rounded-0">
                 <div className="row no-gutters">
-                  <div className="col-md-2">
+                  <div className="col-2 col-lg-2">
                     <img
                       src={images[product.image]}
                       width={150}
                       onClick={()=>{navigate("/product/" + product.id)}}
                     />
                   </div>
-                  <div className="col-md-10 ps-3 pt-3 pb-3">
+                  <div className="col-10 col-lg-9 ps-3 pt-3 pb-3 ms-1">
                       <h5 className="card-title">{product.name}</h5>
                       <div className="card-text">{product.description}</div>
                       <p className="card-text">

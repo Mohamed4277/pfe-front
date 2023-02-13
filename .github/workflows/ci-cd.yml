@@ -33,6 +33,6 @@ jobs:
           USER: ${{ secrets.USER }}
         run: docker login -u $USER -p $PASSWORD
       - name: Build the Docker image
-        run: docker build -t 77871417/react-pfe .
+        run: docker build -t mai77/react-pfe .
       - name: Push the Docker image
-        run: docker push 77871417/react-pfe:latest
+        run: docker push mai77/react-pfe:latest
