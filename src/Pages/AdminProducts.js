@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Products from "../Components/Products";
 import { useDispatch } from "react-redux";
 
-function Admin(){
+function AdminProducts(){
     const [valueToSearch, setValueToSearch] = useState();
     const dispatch=useDispatch();
     useEffect(() => {
@@ -28,7 +28,6 @@ function Admin(){
   
       fetchData();
     }, [valueToSearch]);
-  
   
     return (
       <>
@@ -63,7 +62,7 @@ function Admin(){
 
 }
 
-export default Admin;
+export default AdminProducts;
 
 
 
