@@ -10,7 +10,6 @@ function AdressForm(props) {
   const [city, setCity] = useState("");
   const [zip, setZip] = useState("");
   const [adressOptionDeliveryAdress, setAdressOptionDeliveryAdress]=useState();
-  const [adressOptionInvoiceAdress, setAdressOptionInvoiceAdress]=useState();
   const [isSubmit,setIsSubmit]=useState(false);
   const params = useParams();
   const [adress,setAdress]=useState({})
@@ -66,7 +65,7 @@ function AdressForm(props) {
             zip,
             city,
             isDeliveryAdress:adressOptionDeliveryAdress === "1"? true: false,
-            isInvoiceAdress:adressOptionInvoiceAdress === "1"? true: false
+            isInvoiceAdress:adressOptionDeliveryAdress === "0"? true: false
           }):JSON.stringify({
             nameAdress,
             lastNameAdress,
@@ -75,7 +74,7 @@ function AdressForm(props) {
             zip,
             city,
             isDeliveryAdress:adressOptionDeliveryAdress === "1"? true: false,
-            isInvoiceAdress:adressOptionInvoiceAdress === "1"? true: false
+            isInvoiceAdress:adressOptionDeliveryAdress === "0"? true: false
           })
         });
         const json = await response.json();
@@ -97,8 +96,7 @@ function AdressForm(props) {
     setZip(event.target.zip.value);
     setlastName(event.target.lastNameAdress.value);
     setName(event.target.nameAdress.value);
-    setAdressOptionDeliveryAdress(event.target.adressOptionDeliveryAdress.value);
-    setAdressOptionInvoiceAdress(event.target.adressOptionInvoiceAdress.value)
+    setAdressOptionDeliveryAdress(event.target.adressOption.value);
     setIsSubmit(true)
   }
   return (
@@ -186,14 +184,16 @@ function AdressForm(props) {
         </div>
       </div>
 
-      <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="adressOptionDeliveryAdress" name="adressOptionDeliveryAdress" value="1"/>
-      <label class="form-check-label" for="inlineCheckbox1">Adresse livraison</label>
-     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="adressOptionInvoiceAdress" name="adressOptionInvoiceAdress" value="1"/>
-      <label class="form-check-label" for="inlineCheckbox2">Adresse facturation</label>
-    </div>
+
+
+
+    <select  id="adressOption" name="adressOption" className="form-select rounded-0 col-3">
+            <option selected >Selectionner une option</option>
+            <option value="1">Adresse livraison</option>
+            <option value="0">Adresse facturation</option>
+    </select>
+
+
       <div className="form-group">
         <button  type="submit" className="btn btn-lg btn-primary rounded-0">
           Soumettre

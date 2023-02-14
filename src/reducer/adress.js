@@ -7,17 +7,20 @@ const adress = (adress =initAdress  , action) => {
         {
         case "GET_ADRESSES":
             {console.log('action.payload',action.payload);              let j= 0;
+                     
               let k=0;return action.payload.sort((a,b)=>(b.id-a.id)).reduce((cum,obj)=>{
               
 
 
-              
-              if (obj.isDeliveryAdress===true && obj.isInvoiceAdress===true && j===0){
-
-           cum.push({...obj, isInvoiceAdress:false, adress:"Adresse de livraison", order:2});
-           cum.push({...obj, isDeliveryAdress:false, adress:"Adresse de facturation",order: 1});
-           console.log('ici')
-             j++} else {cum.push({...obj, isInvoiceAdress:false, isDeliveryAdress:false, adress: "Adresse",order:0 }) }     
+             if (obj.isDeliveryAdress===true &&  j===0) {
+              cum.push({...obj, isInvoiceAdress:false, adress:"Adresse de livraison", order:2});
+              j++
+            } else if (obj.isInvoiceAdress===true && k===0) {
+              cum.push({...obj, isDeliveryAdress:false, adress:"Adresse de facturation",order: 1});
+              k++;
+            } else {
+              cum.push({...obj, isInvoiceAdress:false, isDeliveryAdress:false, adress: "Adresse",order:0 }) 
+            }
           
           
           
