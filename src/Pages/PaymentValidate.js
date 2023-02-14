@@ -90,17 +90,16 @@ function PaymentValidate(props) {
     }
   }, [isOrdered])
 
-  const paymentModeUnique = paymentMode.find(
+  const paymentModeUnique = paymentMode.findLast(
     (card) => card.isCreditCardToUse === true && card,
   )
-  const AdressInvoiceUnique = adress.find(
+  const AdressInvoiceUnique = adress.findLast(
     (adress) => adress.isInvoiceAdress === true && adress,
   )
-  const AdressDeliveryUnique = adress.find(
+  const AdressDeliveryUnique = adress.findLast(
     (adress) => adress.isDeliveryAdress === true && adress,
   )
 
-  console.log('kkkkkkkkkkkk', location)
 
   const total =
     cart &&
