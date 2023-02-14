@@ -75,6 +75,7 @@ function PaymentMode() {
                     <div className="card-body ">
                       <div className="row">
                         <div className="col-6">
+                        <h6 className="mb-6 text-warning">{card.isCreditCardToUse && "Carte principale"}</h6>
                           <h6 className="mb-6">{card.name}</h6>
                         </div>
                         <div className="col-6 text-end">

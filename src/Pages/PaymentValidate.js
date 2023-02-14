@@ -207,9 +207,7 @@ function PaymentValidate(props) {
                         <div className="row">
                           <div className="col-6">
                             <h6 className="mb-6">
-                              {AdressDeliveryUnique.isInvoiceAdress
-                                ? 'Adresse de livraison'
-                                : 'Adresse'}
+                              {AdressDeliveryUnique.adress}
                             </h6>
                           </div>
                           <div className="col-6 text-end">
@@ -266,9 +264,7 @@ function PaymentValidate(props) {
                         <div className="row">
                           <div className="col-6">
                             <h6 className="mb-6">
-                              {AdressInvoiceUnique.isDeliveryAdress
-                                ? 'Adresse de facturation'
-                                : 'Adresse'}
+                              {AdressInvoiceUnique.adress}
                             </h6>
                           </div>
                           <div className="col-6 text-end">

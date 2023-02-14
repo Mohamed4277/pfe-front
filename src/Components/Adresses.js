@@ -73,10 +73,8 @@ function Adresses() {
                     <div className="card-body">
                       <div className="row">
                         <div className="col-6">
-                          <h6 className="mb-6">
-                            {adress.isInvoiceAdress
-                              ? 'Adresse de livraison'
-                              : 'Adresse'}
+                          <h6 className={`mb-6 ${(adress.adress==='Adresse de facturation' || adress.adress==='Adresse de livraison') && "text-warning"}`} >
+                            {adress.adress}
                           </h6>
                         </div>
                         <div className="col-6 text-end">
